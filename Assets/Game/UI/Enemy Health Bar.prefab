@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3700804497250494010
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822969, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key0.g
+      value: 0.43921566
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key1.g
+      value: 0.9226117
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.m_NumColorKeys
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
