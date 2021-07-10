@@ -1,6 +1,7 @@
 using Interfaces;
 using MoreMountains.Tools;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Core
 {
@@ -8,6 +9,7 @@ namespace Core
     {
         [SerializeField] float maxHP = 100f;
         [SerializeField] float currentHP;
+        public UnityEvent onHit;
 
         MMHealthBar _healthBar;
 
@@ -24,6 +26,7 @@ namespace Core
         {
             currentHP = Mathf.Max(currentHP - damageAmount, 0);
             UpdateHealthBar();
+            onHit.Invoke();
         }
 
         void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);

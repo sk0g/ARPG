@@ -1,4 +1,6 @@
+using System.Collections;
 using AI.Actions;
+using Core;
 using UnityEngine;
 
 namespace AI
@@ -11,20 +13,65 @@ namespace AI
 
         Perception _p;
         MoveAndStrafe _mover;
+        Animator _anim;
+        Health _health;
 
         void Awake()
         {
+            _anim = GetComponent<Animator>();
             _mover = GetComponent<MoveAndStrafe>();
             _p = gameObject.AddComponent<Perception>();
+
+            _health = GetComponent<Health>();
+            _health.onHit.AddListener(ReactToHit);
         }
+
+        void OnDisable()
+        {
+            _health.onHit.RemoveListener(ReactToHit);
+        }
+
+        [SerializeField] bool _canAct = true;
 
         void FixedUpdate()
         {
-            if (_p.distanceToPlayer > combatDistanceToKeep)
+            if (!_canAct) { return; }
+
+            if (_p.distanceToPlayer > combatDistanceToKeep) { Chase(); }
+            else if (_p.distanceToPlayer > attackRange) { MoveIntoAttackRange(); }
+            else { print("I suppose I could attack?"); }
+        }
+
+        void Chase()
+        {
+            _mover.LookAtDirection(_p.offsetToPlayer);
+            _mover.MoveInDirection(_p.offsetToPlayer);
+        }
+
+        void MoveIntoAttackRange()
+        {
+            _mover.LookAtDirection(_p.offsetToPlayer);
+            _mover.StrafeInDirection(_p.offsetToPlayer);
+        }
+
+        void ReactToHit()
+        {
+            _canAct = false;
+            _anim.SetTrigger("Hit");
+
+            StartCoroutine(WaitTillHitStateEnds());
+
+            _canAct = true;
+        }
+
+        IEnumerator WaitTillHitStateEnds()
+        {
+            while (_anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             {
-                _mover.LookAtDirection(_p.offsetToPlayer);
-                _mover.MoveInDirection(_p.offsetToPlayer);
+                yield return new WaitForSeconds(Time.fixedDeltaTime);
             }
+
+            yield return new WaitForSeconds(.2f);
         }
 
         protected class Perception : MonoBehaviour
