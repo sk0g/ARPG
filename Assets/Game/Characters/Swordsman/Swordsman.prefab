@@ -1786,7 +1786,7 @@ Animator:
   m_GameObject: {fileID: 1147197414044181786}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e3942fec22e99384e9cee5aef64adec1, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3b20c9f8061f25646892a7a25d68c50c, type: 2}
+  m_Controller: {fileID: 9100000, guid: f11376ca33d34441f8b68f6498f6c6bc, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1828,6 +1828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatDistanceToKeep: 4
   attackRange: 1
+  _canAct: 1
 --- !u!114 &1147197414044082705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1857,6 +1858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 50
   currentHP: 0
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1147197414044181788
 GameObject:
   m_ObjectHideFlags: 0
