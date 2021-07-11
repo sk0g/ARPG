@@ -1826,8 +1826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e398e7bbea4787be68b9f4463ea30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatDistanceToKeep: 4
-  attackRange: 1
+  combatDistanceToKeep: 7
+  attackRange: 3
   _canAct: 1
 --- !u!114 &1147197414044082705
 MonoBehaviour:

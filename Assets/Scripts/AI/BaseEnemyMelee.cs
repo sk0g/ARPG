@@ -106,8 +106,11 @@ namespace AI
 
             public Vector3 lastPlayerPosition;
 
-            void UpdateLastPlayerPosition() => lastPlayerPosition =
-                _player.transform.position;
+            void UpdateLastPlayerPosition()
+            {
+                lastPlayerPosition.x = _player.transform.position.x;
+                lastPlayerPosition.z = _player.transform.position.z;
+            }
 
             public float distanceToPlayer;
 
