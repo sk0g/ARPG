@@ -8,14 +8,14 @@ using UnityEngine;
 /// </summary>
 public class SuperCharacterController:MonoBehaviour
 {
-	[SerializeField] private Vector3 debugMove = Vector3.zero;
-	[SerializeField] private QueryTriggerInteraction triggerInteraction;
-	[SerializeField] private bool fixedTimeStep;
-	[SerializeField] private int fixedUpdatesPerSecond;
-	[SerializeField] private bool clampToMovingGround;
-	[SerializeField] private bool debugSpheres;
-	[SerializeField] private bool debugGrounding;
-	[SerializeField] private bool debugPushbackMesssages;
+	[SerializeField] Vector3 debugMove = Vector3.zero;
+	[SerializeField] QueryTriggerInteraction triggerInteraction;
+	[SerializeField] bool fixedTimeStep;
+	[SerializeField] int fixedUpdatesPerSecond;
+	[SerializeField] bool clampToMovingGround;
+	[SerializeField] bool debugSpheres;
+	[SerializeField] bool debugGrounding;
+	[SerializeField] bool debugPushbackMesssages;
 
 	/// <summary>
 	/// Describes the Transform of the object we are standing on as well as it's CollisionType, as well
@@ -42,7 +42,7 @@ public class SuperCharacterController:MonoBehaviour
 		}
 	}
 
-	[SerializeField] private CollisionSphere[] spheres =
+	[SerializeField] CollisionSphere[] spheres =
 		new CollisionSphere[3] {
 			new CollisionSphere(0.5f, true, false),
 			new CollisionSphere(1.0f, false, false),
@@ -51,7 +51,7 @@ public class SuperCharacterController:MonoBehaviour
 
 	public LayerMask Walkable;
 
-	[SerializeField] private Collider ownCollider;
+	[SerializeField] Collider ownCollider;
 
 	[SerializeField]
 	public float radius = 0.5f;
@@ -77,25 +77,25 @@ public class SuperCharacterController:MonoBehaviour
 	public delegate void UpdateDelegate();
 	public event UpdateDelegate AfterSingleUpdate;
 
-	private Vector3 initialPosition;
-	private Vector3 groundOffset;
-	private Vector3 lastGroundPosition;
-	private bool clamping = true;
-	private bool slopeLimiting = true;
+	Vector3 initialPosition;
+	Vector3 groundOffset;
+	Vector3 lastGroundPosition;
+	bool clamping = true;
+	bool slopeLimiting = true;
 
-	private List<Collider> ignoredColliders;
-	private List<IgnoredCollider> ignoredColliderStack;
+	List<Collider> ignoredColliders;
+	List<IgnoredCollider> ignoredColliderStack;
 
-	private const float Tolerance = 0.05f;
-	private const float TinyTolerance = 0.01f;
-	private const string TemporaryLayer = "TempCast";
-	private const int MaxPushbackIterations = 2;
-	private int TemporaryLayerIndex;
-	private float fixedDeltaTime;
+	const float Tolerance = 0.05f;
+	const float TinyTolerance = 0.01f;
+	const string TemporaryLayer = "TempCast";
+	const int MaxPushbackIterations = 2;
+	int TemporaryLayerIndex;
+	float fixedDeltaTime;
 
-	private static SuperCollisionType defaultCollisionType;
+	static SuperCollisionType defaultCollisionType;
 
-	private void Awake()
+	void Awake()
 	{
 		collisionData = new List<SuperCollision>();
 
@@ -131,7 +131,7 @@ public class SuperCharacterController:MonoBehaviour
 		gameObject.SendMessage("SuperStart", SendMessageOptions.DontRequireReceiver);
 	}
 
-	private void Update()
+	void Update()
 	{
 		// If we are using a fixed timestep, ensure we run the main update loop
 		// a sufficient number of times based on the Time.deltaTime.
@@ -162,7 +162,7 @@ public class SuperCharacterController:MonoBehaviour
 		SingleUpdate();
 	}
 
-	private void SingleUpdate()
+	void SingleUpdate()
 	{
 		// Check if we are clamped to an object implicity or explicity.
 		bool isClamping = clamping || currentlyClampedTo != null;
@@ -202,7 +202,7 @@ public class SuperCharacterController:MonoBehaviour
 		if (AfterSingleUpdate != null) { AfterSingleUpdate(); }
 	}
 
-	private void ProbeGround(int iter)
+	void ProbeGround(int iter)
 	{
 		PushIgnoredColliders();
 		currentGround.ProbeGround(SpherePosition(feet), iter);
@@ -213,7 +213,7 @@ public class SuperCharacterController:MonoBehaviour
 	/// Prevents the player from walking up slopes of a larger angle than the object's SlopeLimit.
 	/// </summary>
 	/// <returns>True if the controller attemped to ascend a too steep slope and had their movement limited.</returns>
-	private bool SlopeLimit()
+	bool SlopeLimit()
 	{
 		Vector3 n = currentGround.PrimaryNormal();
 		float a = Vector3.Angle(n, up);
@@ -248,7 +248,7 @@ public class SuperCharacterController:MonoBehaviour
 		return false;
 	}
 
-	private void ClampToGround()
+	void ClampToGround()
 	{
 		float d = currentGround.Distance();
 		transform.position -= up * d;
@@ -283,7 +283,7 @@ public class SuperCharacterController:MonoBehaviour
 	/// Check if any of the CollisionSpheres are colliding with any walkable objects in the world.
 	/// If they are, apply a proper pushback and retrieve the collision data.
 	/// </summary>
-	private void RecursivePushback(int depth, int maxDepth)
+	void RecursivePushback(int depth, int maxDepth)
 	{
 		PushIgnoredColliders();
 
@@ -366,7 +366,7 @@ public class SuperCharacterController:MonoBehaviour
 		}
 	}
 
-	private void PushIgnoredColliders()
+	void PushIgnoredColliders()
 	{
 		ignoredColliderStack.Clear();
 
@@ -377,7 +377,7 @@ public class SuperCharacterController:MonoBehaviour
 		}
 	}
 
-	private void PopIgnoredColliders()
+	void PopIgnoredColliders()
 	{
 		for (int i = 0; i < ignoredColliderStack.Count; i++) {
 			IgnoredCollider ic = ignoredColliderStack[i];
@@ -387,7 +387,7 @@ public class SuperCharacterController:MonoBehaviour
 		ignoredColliderStack.Clear();
 	}
 
-	private void OnDrawGizmos()
+	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.red;
 
@@ -445,7 +445,7 @@ public class SuperCharacterController:MonoBehaviour
 			this.triggerInteraction = triggerInteraction;
 		}
 
-		private class GroundHit
+		class GroundHit
 		{
 			public Vector3 point { get; private set; }
 			public Vector3 normal { get; private set; }
@@ -459,22 +459,22 @@ public class SuperCharacterController:MonoBehaviour
 			}
 		}
 
-		private LayerMask walkable;
-		private SuperCharacterController controller;
-		private readonly QueryTriggerInteraction triggerInteraction;
+		LayerMask walkable;
+		SuperCharacterController controller;
+		readonly QueryTriggerInteraction triggerInteraction;
 
-		private GroundHit primaryGround;
-		private GroundHit nearGround;
-		private GroundHit farGround;
-		private GroundHit stepGround;
-		private GroundHit flushGround;
+		GroundHit primaryGround;
+		GroundHit nearGround;
+		GroundHit farGround;
+		GroundHit stepGround;
+		GroundHit flushGround;
 
 		public SuperCollisionType superCollisionType { get; private set; }
 		public Transform transform { get; private set; }
 
-		private const float groundingUpperBoundAngle = 60.0f;
-		private const float groundingMaxPercentFromCenter = 0.85f;
-		private const float groundingMinPercentFromcenter = 0.50f;
+		const float groundingUpperBoundAngle = 60.0f;
+		const float groundingMaxPercentFromCenter = 0.85f;
+		const float groundingMinPercentFromcenter = 0.50f;
 
 		/// <summary>
 		/// Scan the surface below us for ground. Follow up the initial scan with subsequent scans
@@ -597,7 +597,7 @@ public class SuperCharacterController:MonoBehaviour
 			}
 		}
 
-		private void ResetGrounds()
+		void ResetGrounds()
 		{
 			primaryGround = null;
 			nearGround = null;
@@ -660,7 +660,7 @@ public class SuperCharacterController:MonoBehaviour
 		/// <param name="normal">Normal of the surface to test against.</param>
 		/// <param name="point">Point of contact with the surface.</param>
 		/// <returns>True if the ground is steady.</returns>
-		private bool OnSteadyGround(Vector3 normal, Vector3 point)
+		bool OnSteadyGround(Vector3 normal, Vector3 point)
 		{
 			float angle = Vector3.Angle(normal, controller.up);
 
@@ -716,7 +716,7 @@ public class SuperCharacterController:MonoBehaviour
 		/// <param name="groundNormal">Normal of a triangle assumed to be directly below the controller.</param>
 		/// <param name="hit">Simulated SphereCast data.</param>
 		/// <returns>True if the raycast is successful.</returns>
-		private bool SimulateSphereCast(Vector3 groundNormal, out RaycastHit hit)
+		bool SimulateSphereCast(Vector3 groundNormal, out RaycastHit hit)
 		{
 			float groundAngle = Vector3.Angle(groundNormal, controller.up) * Mathf.Deg2Rad;
 

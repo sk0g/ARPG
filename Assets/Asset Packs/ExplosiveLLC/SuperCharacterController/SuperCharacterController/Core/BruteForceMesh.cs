@@ -8,14 +8,14 @@
 [RequireComponent(typeof(MeshCollider))]
 public class BruteForceMesh:MonoBehaviour
 {
-	private int triangleCount;
-	private Vector3[] vertices;
-	private int[] tris;
-	private Vector3[] triangleNormals;
+	int triangleCount;
+	Vector3[] vertices;
+	int[] tris;
+	Vector3[] triangleNormals;
 
-	private Mesh mesh;
+	Mesh mesh;
 
-	private void Awake()
+	void Awake()
 	{
 		mesh = GetComponent<MeshCollider>().sharedMesh;
 
@@ -41,7 +41,7 @@ public class BruteForceMesh:MonoBehaviour
 		return transform.TransformPoint(closest);
 	}
 
-	private Vector3 ClosestPointOnTriangle(int[] triangles, Vector3 to)
+	Vector3 ClosestPointOnTriangle(int[] triangles, Vector3 to)
 	{
 		float shortestDistance = float.MaxValue;
 
@@ -99,7 +99,7 @@ public class BruteForceMesh:MonoBehaviour
 	/// <param name="vertex2">The second vertex to test.</param>
 	/// <param name="vertex3">The third vertex to test.</param>
 	/// <param name="result">When the method completes, contains the closest point between the two objects.</param>
-	private void ClosestPointOnTriangleToPoint(ref Vector3 vertex1, ref Vector3 vertex2, ref Vector3 vertex3, ref Vector3 point, out Vector3 result)
+	void ClosestPointOnTriangleToPoint(ref Vector3 vertex1, ref Vector3 vertex2, ref Vector3 vertex3, ref Vector3 point, out Vector3 result)
 	{
 		// Source: Real-Time Collision Detection by Christer Ericson.
 		// Reference: Page 136.

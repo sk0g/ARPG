@@ -121,6 +121,7 @@ namespace AI
 
             void UpdateOffsetToPlayer() => offsetToPlayer =
                 lastPlayerPosition - transform.position;
+            
         }
     }
 }

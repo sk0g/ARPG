@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Math3d:MonoBehaviour
 {
-	private static Transform tempChild;
-	private static Transform tempParent;
+	static Transform tempChild;
+	static Transform tempParent;
 
 	public static void Init()
 	{
@@ -453,7 +453,7 @@ public class Math3d:MonoBehaviour
 	}
 
 	// Convert a position, direction, and normal vector to a transform.
-	private void VectorsToTransform(ref GameObject gameObjectInOut, Vector3 positionVector, Vector3 directionVector, Vector3 normalVector)
+	void VectorsToTransform(ref GameObject gameObjectInOut, Vector3 positionVector, Vector3 directionVector, Vector3 normalVector)
 	{
 		gameObjectInOut.transform.position = positionVector;
 		gameObjectInOut.transform.rotation = Quaternion.LookRotation(directionVector, normalVector);

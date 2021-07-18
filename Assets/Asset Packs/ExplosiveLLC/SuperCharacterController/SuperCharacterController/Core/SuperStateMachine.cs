@@ -36,7 +36,7 @@ public class SuperStateMachine:MonoBehaviour
 	[HideInInspector]
 	public Enum lastState;
 
-	private void ChangingState()
+	void ChangingState()
 	{
 		lastState = state.currentState;
 		timeEnteredState = Time.time;
@@ -46,7 +46,7 @@ public class SuperStateMachine:MonoBehaviour
 	/// Runs the exit method for the previous state. Updates all method delegates to the new
 	/// state, and then runs the enter method for the new state.
 	/// </summary>
-	private void ConfigureCurrentState()
+	void ConfigureCurrentState()
 	{
 		if (state.exitState != null) { state.exitState(); }
 
@@ -58,7 +58,7 @@ public class SuperStateMachine:MonoBehaviour
 		if (state.enterState != null) { state.enterState(); }
 	}
 
-	private Dictionary<Enum, Dictionary<string, Delegate>> _cache = new Dictionary<Enum, Dictionary<string, Delegate>>();
+	Dictionary<Enum, Dictionary<string, Delegate>> _cache = new Dictionary<Enum, Dictionary<string, Delegate>>();
 
 	/// <summary>
 	/// Retrieves the specific state method for the provided method root.
@@ -68,7 +68,7 @@ public class SuperStateMachine:MonoBehaviour
 	/// in the form of X_methodRoot where X is a state name.</param>
 	/// <param name="Default"></param>
 	/// <returns>The state specific method as a delegate or Default if it does not exist.</returns>
-	private T ConfigureDelegate<T>(string methodRoot, T Default) where T : class
+	T ConfigureDelegate<T>(string methodRoot, T Default) where T : class
 	{
 
 		if (!_cache.TryGetValue(state.currentState, out Dictionary<string, Delegate> lookup)) {
@@ -90,7 +90,7 @@ public class SuperStateMachine:MonoBehaviour
 	/// <summary>
 	/// Message callback from the SuperCharacterController that runs the state specific update between global updates.
 	/// </summary>
-	private void SuperUpdate()
+	void SuperUpdate()
 	{
 		EarlyGlobalSuperUpdate();
 
@@ -103,5 +103,5 @@ public class SuperStateMachine:MonoBehaviour
 
 	protected virtual void LateGlobalSuperUpdate() { }
 
-	private static void DoNothing() { }
+	static void DoNothing() { }
 }

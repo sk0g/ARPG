@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 public class BSPTree:MonoBehaviour
 {
-	[SerializeField] private bool drawMeshTreeOnStart;
+	[SerializeField] bool drawMeshTreeOnStart;
 
 	public class Node
 	{
@@ -22,17 +22,17 @@ public class BSPTree:MonoBehaviour
 		public int[] triangles;
 	};
 
-	private int triangleCount;
-	private int vertexCount;
-	private Vector3[] vertices;
-	private int[] tris;
-	private Vector3[] triangleNormals;
+	int triangleCount;
+	int vertexCount;
+	Vector3[] vertices;
+	int[] tris;
+	Vector3[] triangleNormals;
 
-	private Mesh mesh;
+	Mesh mesh;
 
-	private Node tree;
+	Node tree;
 
-	private void Awake()
+	void Awake()
 	{
 		mesh = GetComponent<MeshCollider>().sharedMesh;
 
@@ -52,7 +52,7 @@ public class BSPTree:MonoBehaviour
 		if (!drawMeshTreeOnStart) { BuildTriangleTree(); }
 	}
 
-	private void Start()
+	void Start()
 	{
 		if (drawMeshTreeOnStart) { BuildTriangleTree(); }
 	}
@@ -73,7 +73,7 @@ public class BSPTree:MonoBehaviour
 		return transform.TransformPoint(closest);
 	}
 
-	private void FindClosestTriangles(Node node, Vector3 to, float radius, List<int> triangles)
+	void FindClosestTriangles(Node node, Vector3 to, float radius, List<int> triangles)
 	{
 		if (node.triangles == null) {
 			if (PointDistanceFromPlane(node.partitionPoint, node.partitionNormal, to) <= radius) {
@@ -89,7 +89,7 @@ public class BSPTree:MonoBehaviour
 		}
 	}
 
-	private Vector3 ClosestPointOnTriangle(int[] triangles, Vector3 to)
+	Vector3 ClosestPointOnTriangle(int[] triangles, Vector3 to)
 	{
 		float shortestDistance = float.MaxValue;
 
@@ -113,7 +113,7 @@ public class BSPTree:MonoBehaviour
 		return shortestPoint;
 	}
 
-	private void BuildTriangleTree()
+	void BuildTriangleTree()
 	{
 		List<int> rootTriangles = new List<int>();
 
@@ -126,7 +126,7 @@ public class BSPTree:MonoBehaviour
 		RecursivePartition(rootTriangles, 0, tree);
 	}
 
-	private void RecursivePartition(List<int> triangles, int depth, Node parent)
+	void RecursivePartition(List<int> triangles, int depth, Node parent)
 	{
 		Vector3 partitionPoint = Vector3.zero;
 
@@ -200,7 +200,7 @@ public class BSPTree:MonoBehaviour
 	/// Splits a a set of input triangles by a partition plane into positive and negative sets, with triangles
 	/// that are intersected by the partition plane being placed in both sets.
 	/// </summary>
-	private void Split(List<int> triangles, Vector3 partitionPoint, Vector3 partitionNormal, out List<int> positiveTriangles, out List<int> negativeTriangles)
+	void Split(List<int> triangles, Vector3 partitionPoint, Vector3 partitionNormal, out List<int> positiveTriangles, out List<int> negativeTriangles)
 	{
 		positiveTriangles = new List<int>();
 		negativeTriangles = new List<int>();
@@ -221,12 +221,12 @@ public class BSPTree:MonoBehaviour
 		}
 	}
 
-	private bool PointAbovePlane(Vector3 planeOrigin, Vector3 planeNormal, Vector3 point)
+	bool PointAbovePlane(Vector3 planeOrigin, Vector3 planeNormal, Vector3 point)
 	{
 		return Vector3.Dot(point - planeOrigin, planeNormal) >= 0;
 	}
 
-	private float PointDistanceFromPlane(Vector3 planeOrigin, Vector3 planeNormal, Vector3 point)
+	float PointDistanceFromPlane(Vector3 planeOrigin, Vector3 planeNormal, Vector3 point)
 	{
 		return Mathf.Abs(Vector3.Dot((point - planeOrigin), planeNormal));
 	}
@@ -342,7 +342,7 @@ public class BSPTree:MonoBehaviour
 		result = vertex1 + ab * v2 + ac * w2;
 	}
 
-	private void DrawTriangleSet(int[] triangles, Color color)
+	void DrawTriangleSet(int[] triangles, Color color)
 	{
 		foreach (int triangle in triangles) {
 			DebugDraw.DrawTriangle(vertices[tris[triangle]], vertices[tris[triangle + 1]], vertices[tris[triangle + 2]], color, transform);
