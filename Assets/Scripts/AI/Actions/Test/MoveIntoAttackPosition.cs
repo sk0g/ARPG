@@ -16,12 +16,12 @@ public class MoveIntoAttackPosition : ActionNode
         _player = GameObject.FindWithTag("Player");
         _cc = context.gameObject.GetComponent<CharacterController>();
 
-        context.gameObject.GetComponent<Animator>().SetFloat("Speed", .5f);
+        context.animator.SetFloat("Speed", .5f);
     }
 
     protected override void OnStop()
     {
-        context.gameObject.GetComponent<Animator>().SetFloat("Speed", .0f);
+        context.animator.SetFloat("Speed", .0f);
     }
 
     protected override State OnUpdate()
