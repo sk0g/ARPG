@@ -44,16 +44,14 @@ namespace AI.Actions.Test
             LookAtDirection(OffsetToPlayer());
         }
 
-        public void MoveInDirection(Vector3 movementDirection) =>
+        void MoveInDirection(Vector3 movementDirection) =>
             _cc.SimpleMove(movementDirection.normalized * runSpeed);
 
-        Vector3 PlayerPosition() => _player.transform.position;
+        float DistanceToPlayer() => Vector3.Distance(context.transform.position, _player.transform.position);
 
-        float DistanceToPlayer() => Vector3.Distance(context.transform.position, PlayerPosition());
+        Vector3 OffsetToPlayer() => _player.transform.position - context.transform.position;
 
-        Vector3 OffsetToPlayer() => PlayerPosition() - context.transform.position;
-
-        public void LookAtDirection(Vector3 direction) =>
+        void LookAtDirection(Vector3 direction) =>
             context.transform.rotation = Quaternion.RotateTowards(
                 from: context.transform.rotation,
                 to: Quaternion.LookRotation(direction),

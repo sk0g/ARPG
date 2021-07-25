@@ -15,12 +15,12 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: 4baca42b0beb447c1b766e569cdbce64
-  position: {x: 0, y: 233}
+  position: {x: -124, y: 383}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  runSpeed: 4
+  runSpeed: 3.5
   idealPlayerProximity: 4
   rotationSpeed: 150
 --- !u!114 &-6019795834544203501
@@ -44,6 +44,29 @@ MonoBehaviour:
   description: 
   drawGizmos: 0
   child: {fileID: 7341957445864978280}
+--- !u!114 &-1012544593634773441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61431bba79d7d7843b82bf1de71703f5, type: 3}
+  m_Name: Sequencer
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: aa114cd8e762b400cb9cea823a898c58
+  position: {x: 0, y: 233.5}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  children:
+  - {fileID: -6433974869502128629}
+  - {fileID: 349440547857176987}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +85,32 @@ MonoBehaviour:
   - {fileID: -6019795834544203501}
   - {fileID: 7341957445864978280}
   - {fileID: -6433974869502128629}
+  - {fileID: -1012544593634773441}
+  - {fileID: 349440547857176987}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &349440547857176987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc64a8158e1d94b31930b9ee01882f2e, type: 3}
+  m_Name: MoveIntoAttackPosition
+  m_EditorClassIdentifier: 
+  state: 0
+  started: 0
+  guid: 8c1fc44533c0d4679904a69553f21346
+  position: {x: 111, y: 383}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+  description: 
+  drawGizmos: 0
+  attackRange: 2.5
+  walkSpeed: 2
 --- !u!114 &7341957445864978280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +131,6 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  child: {fileID: -6433974869502128629}
+  child: {fileID: -1012544593634773441}
   restartOnSuccess: 1
-  restartOnFailure: 0
+  restartOnFailure: 1
