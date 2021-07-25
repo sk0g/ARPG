@@ -5,22 +5,13 @@ namespace AI.Actions.Test
 {
     public class MoveToPlayer : ActionNode
     {
-        [SerializeField] float runSpeed = 4f;
-
         [Tooltip("Distance in meters the AI player will stop chasing the player in")] [SerializeField]
         float idealPlayerProximity = 4f;
 
-        [Tooltip("Degrees per second the character can turn")] [SerializeField]
-        float rotationSpeed = 150f;
-
-        CharacterController _cc;
-        GameObject _player;
+        BT_Movement _mover;
 
         protected override void OnStart()
         {
-            _player = GameObject.FindWithTag("Player");
-            _cc = context.gameObject.GetComponent<CharacterController>();
-
             context.animator.SetFloat("Speed", 1f);
         }
 
@@ -31,7 +22,7 @@ namespace AI.Actions.Test
 
         protected override State OnUpdate()
         {
-            if (DistanceToPlayer() <= idealPlayerProximity) { return State.Success; }
+            if (context.mover.DistanceToPlayer() <= idealPlayerProximity) { return State.Success; }
 
             UpdatePositionAndLookDirection();
 
@@ -40,21 +31,8 @@ namespace AI.Actions.Test
 
         void UpdatePositionAndLookDirection()
         {
-            MoveInDirection(OffsetToPlayer());
-            LookAtDirection(OffsetToPlayer());
+            context.mover.RunInDirection(context.mover.OffsetToPlayer());
+            context.mover.LookAtDirection(context.mover.OffsetToPlayer());
         }
-
-        void MoveInDirection(Vector3 movementDirection) =>
-            _cc.SimpleMove(movementDirection.normalized * runSpeed);
-
-        float DistanceToPlayer() => Vector3.Distance(context.transform.position, _player.transform.position);
-
-        Vector3 OffsetToPlayer() => _player.transform.position - context.transform.position;
-
-        void LookAtDirection(Vector3 direction) =>
-            context.transform.rotation = Quaternion.RotateTowards(
-                from: context.transform.rotation,
-                to: Quaternion.LookRotation(direction),
-                maxDegreesDelta: Time.fixedDeltaTime * rotationSpeed);
     }
 }

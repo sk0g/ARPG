@@ -1375,7 +1375,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.2341491, y: 1}
+    m_SensorSize: {x: 1.7909441, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -1759,7 +1759,7 @@ Transform:
   m_GameObject: {fileID: 1723353640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.8484243, y: -1.6720581, z: -7.8582044}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 205495882}
@@ -1885,7 +1885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0f1e3ce8b034222957fd2d1336feb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
+  movementSpeed: 6
 --- !u!114 &1779561146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3805,6 +3805,7 @@ GameObject:
   - component: {fileID: 3665522563907607948}
   - component: {fileID: 4410471688101257099}
   - component: {fileID: 4410471688101257100}
+  - component: {fileID: 4410471688101257101}
   m_Layer: 0
   m_Name: Swordsman_BTree
   m_TagString: Untagged
@@ -4691,6 +4692,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 11400000, guid: 2a7a17f0e22aa4c9db6c782d0dfffaf0, type: 2}
+--- !u!114 &4410471688101257101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3665522563907705472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee78f468876cc451fa5095cdc0806a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runSpeed: 3.5
+  walkSpeed: 2
+  rotationSpeed: 150
 --- !u!1001 &7698225372107154590
 PrefabInstance:
   m_ObjectHideFlags: 0
