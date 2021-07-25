@@ -1,70 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TheKiwiCoder;
+using UnityEngine;
 
-namespace AI.Actions.TEst {
-    public class MoveToPlayer : ActionNode {
-        public float runSpeed = 4f;
-        
+namespace AI.Actions.Test
+{
+    public class MoveToPlayer : ActionNode
+    {
+        [SerializeField] float runSpeed = 4f;
+
+        [Tooltip("Distance in meters the AI player will stop chasing the player in")] [SerializeField]
+        float idealPlayerProximity = 4f;
+
         [Tooltip("Degrees per second the character can turn")] [SerializeField]
         float rotationSpeed = 150f;
-        
-        public Vector3 lastPlayerPosition;
-        
+
         CharacterController _cc;
         GameObject _player;
-        
-        protected override void OnStart() {
+
+        protected override void OnStart()
+        {
             _player = GameObject.FindWithTag("Player");
             _cc = context.gameObject.GetComponent<CharacterController>();
+
+            context.gameObject.GetComponent<Animator>().SetFloat("Speed", 1f);
         }
 
-        protected override void OnStop() {
+        protected override void OnStop()
+        {
+            context.gameObject.GetComponent<Animator>().SetFloat("Speed", 0f);
         }
 
-        protected override State OnUpdate() {
-            UpdatePerception();
+        protected override State OnUpdate()
+        {
+            if (DistanceToPlayer() <= idealPlayerProximity) { return State.Success; }
+
             UpdatePositionAndLookDirection();
-            
-            return State.Success;
+
+            return State.Running;
         }
 
         void UpdatePositionAndLookDirection()
         {
-            MoveInDirection(offsetToPlayer);
-            LookAtDirection(offsetToPlayer);
+            MoveInDirection(OffsetToPlayer());
+            LookAtDirection(OffsetToPlayer());
         }
-        
-        void UpdatePerception()
-        {
-            UpdateLastPlayerPosition();
-            UpdateDistanceToPlayer();
-            UpdateOffsetToPlayer();
-        }
-        
+
         public void MoveInDirection(Vector3 movementDirection) =>
             _cc.SimpleMove(movementDirection.normalized * runSpeed);
-        
-        void UpdateLastPlayerPosition()
-        {
-            lastPlayerPosition.x = _player.transform.position.x;
-            lastPlayerPosition.z = _player.transform.position.z;
-        }
 
-        public float distanceToPlayer;
+        Vector3 PlayerPosition() => _player.transform.position;
 
-        void UpdateDistanceToPlayer() => distanceToPlayer =
-            Vector3.Distance(context.transform.position, lastPlayerPosition);
+        float DistanceToPlayer() => Vector3.Distance(context.transform.position, PlayerPosition());
 
-        public Vector3 offsetToPlayer;
+        Vector3 OffsetToPlayer() => PlayerPosition() - context.transform.position;
 
-        void UpdateOffsetToPlayer() => offsetToPlayer =
-            lastPlayerPosition - context.transform.position;
-        
         public void LookAtDirection(Vector3 direction) =>
             context.transform.rotation = Quaternion.RotateTowards(
-                from:  context.transform.rotation,
+                from: context.transform.rotation,
                 to: Quaternion.LookRotation(direction),
                 maxDegreesDelta: Time.fixedDeltaTime * rotationSpeed);
     }

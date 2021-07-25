@@ -15,14 +15,14 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: e37bfc8a2b7af334cafeb1a6108bc586
-  position: {x: -22, y: 4}
+  position: {x: -22, y: -3}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  child: {fileID: -5660333016957678146}
+  child: {fileID: -2506737664870024310, guid: 1bb768b31a2894be9b558037270991f5, type: 2}
   restartOnSuccess: 1
-  restartOnFailure: 0
+  restartOnFailure: 1
 --- !u!114 &-5660333016957678146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   state: 0
   started: 0
   guid: ca00e6aa7ca72c144ae99d826e0d13e4
-  position: {x: -22, y: -102}
+  position: {x: -22, y: -106.88}
   blackboard:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 

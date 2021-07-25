@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
+  m_IndirectSpecularColor: {r: 1480.2295, g: 1833.8652, b: 2428.0332, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -700,7 +700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498223231}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -6.0000005, y: 9.485282, z: -6}
+  m_LocalPosition: {x: -6, y: 9.485282, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1375,7 +1375,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.1271552, y: 1}
+    m_SensorSize: {x: 0.9583102, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -2655,6 +2655,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordsman
       objectReference: {fileID: 0}
+    - target: {fileID: 1147197414044181786, guid: 6da8eb67e37e24382899cad0fdb557a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1147197414044481786, guid: 6da8eb67e37e24382899cad0fdb557a6, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2718,7 +2722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 1bb768b31a2894be9b558037270991f5, type: 2}
+  tree: {fileID: 0}
 --- !u!137 &1815826412512026036
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -4704,7 +4708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 11400000, guid: 1bb768b31a2894be9b558037270991f5, type: 2}
+  tree: {fileID: 11400000, guid: 2a7a17f0e22aa4c9db6c782d0dfffaf0, type: 2}
 --- !u!1001 &7698225372107154590
 PrefabInstance:
   m_ObjectHideFlags: 0
