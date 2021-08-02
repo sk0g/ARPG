@@ -11,7 +11,8 @@ namespace Actions
         [SerializeField] float damageAmount = 10f;
         [SerializeField] string animationTriggerName = "Attack1";
         [SerializeField] Collider weaponCollider;
-
+        [SerializeField] BaseWeapon currentWeapon;
+        
         bool _isAttacking;
         bool _canAttackAgain = true;
 
