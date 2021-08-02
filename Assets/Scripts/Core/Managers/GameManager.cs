@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Core.Managers
 {
@@ -25,6 +26,28 @@ namespace Core.Managers
             }
         }
 
-        // implement your Awake, Start, Update, or other methods here...
+        public bool IsPaused { get; private set; }
+        UIManager _ui;
+
+        void Awake()
+        {
+            _ui = GetComponent<UIManager>();
+        }
+
+        public void TogglePause()
+        {
+            IsPaused = !IsPaused;
+
+            SetTimescaleForPaused(IsPaused);
+            _ui.SetPauseMenuVisibility(IsPaused);
+        }
+
+        public void RestartGame()
+        {
+            SetTimescaleForPaused(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        void SetTimescaleForPaused(bool paused) => Time.timeScale = paused ? 0f : 1f;
     }
 }

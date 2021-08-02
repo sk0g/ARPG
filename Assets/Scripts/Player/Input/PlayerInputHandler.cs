@@ -1,4 +1,5 @@
 using Actions;
+using Core.Managers;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,12 +13,14 @@ namespace Player.Input
         IDirectionalMover _directionalMover;
         Dash _dasher;
         Attack _attack1;
+        GameManager _gameManager;
 
         void Awake()
         {
             _directionalMover = GetComponent<IDirectionalMover>();
             _dasher = GetComponent<Dash>();
             _attack1 = GetComponent<Attack>();
+            _gameManager = GameObject.FindWithTag("GameController")?.GetComponent<GameManager>();
         }
 
         Vector3 _currentMovement;
@@ -47,10 +50,17 @@ namespace Player.Input
             if (ctx.canceled && _shouldAttack) { _shouldAttack = false; }
         }
 
+        public void ReadPause(InputAction.CallbackContext ctx)
+        {
+            if (ctx.started) { _gameManager.TogglePause(); }
+        }
+
         #endregion
 
         void FixedUpdate()
         {
+            if (_gameManager.IsPaused) { return; }
+
             if (_shouldDash && CanDash()) { DoDash(); }
             else if (_shouldAttack && CanAttack()) { DoAttack(); }
             else if (CanMove()) { DoMove(); }

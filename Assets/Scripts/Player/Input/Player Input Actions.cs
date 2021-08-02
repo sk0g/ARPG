@@ -52,6 +52,14 @@ namespace Player.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1ec7fa9-a44e-4136-92f7-dd573cf010eb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -142,6 +150,17 @@ namespace Player.Input
                     ""action"": ""Attack 1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d0d9c6b-1fa8-489c-8436-67faa66ed182"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -153,6 +172,7 @@ namespace Player.Input
             m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
             m_Default_Dash = m_Default.FindAction("Dash", throwIfNotFound: true);
             m_Default_Attack1 = m_Default.FindAction("Attack 1", throwIfNotFound: true);
+            m_Default_Pause = m_Default.FindAction("Pause", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -215,6 +235,7 @@ namespace Player.Input
         private readonly InputAction m_Default_Movement;
         private readonly InputAction m_Default_Dash;
         private readonly InputAction m_Default_Attack1;
+        private readonly InputAction m_Default_Pause;
         public struct DefaultActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -222,6 +243,7 @@ namespace Player.Input
             public InputAction @Movement => m_Wrapper.m_Default_Movement;
             public InputAction @Dash => m_Wrapper.m_Default_Dash;
             public InputAction @Attack1 => m_Wrapper.m_Default_Attack1;
+            public InputAction @Pause => m_Wrapper.m_Default_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Default; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -240,6 +262,9 @@ namespace Player.Input
                     @Attack1.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack1;
                     @Attack1.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack1;
                     @Attack1.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack1;
+                    @Pause.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_DefaultActionsCallbackInterface = instance;
                 if (instance != null)
@@ -253,6 +278,9 @@ namespace Player.Input
                     @Attack1.started += instance.OnAttack1;
                     @Attack1.performed += instance.OnAttack1;
                     @Attack1.canceled += instance.OnAttack1;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -262,6 +290,7 @@ namespace Player.Input
             void OnMovement(InputAction.CallbackContext context);
             void OnDash(InputAction.CallbackContext context);
             void OnAttack1(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
     }
 }
