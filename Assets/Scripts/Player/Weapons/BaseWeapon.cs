@@ -1,30 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
-// TODO: Add more?? events? 
-public abstract class BaseWeapon : IAttack
+namespace Player.Weapons
 {
-    // every weapon needs a name 
-    private string _name;
-    protected string Name { get; set; }
-
-    // how far a weapon can reach, excludes arm length and leg? length
-    private float _range;
-    protected float Range { get; set; }
-    
-    public BaseWeapon(float r, string n)
+    [RequireComponent(typeof(Collider))]
+    public abstract class BaseWeapon : MonoBehaviour, IAttack
     {
-        Range = r;
-        Name = n;
+        // TODO: actually have this access the collider automatically
+        [SerializeField] private Collider weaponCollider;
+        public Collider WeaponCollider   { 
+            get => weaponCollider;
+            private set => weaponCollider = value;
+        }
+        
+        protected string Name => gameObject.name;
+
+        // every weapon needs a name 
+        [SerializeField] private string description;
+        public string Description
+        {
+            get => description;
+            private set => description = value;
+        }
+
+        // how far a weapon can reach, excludes arm length and leg? length
+        [SerializeField] private float range;
+        protected float Range   { 
+            get => range;
+            private set => range = value;
+        }
+
+        protected BaseWeapon(float r, string d)
+        {
+            Range = r;
+            Description = d;
+        }
+
+        public virtual void Awake()
+        {
+            print($"{Name} ready to clap cheeks!");
+        }
+
+        public abstract void Damage();
+        public abstract void Hit();
+        public abstract void LightAttack1();
+        public abstract void HeavyAttack1();
     }
-
-    public abstract void Damage();
-    public abstract void Hit();
-    
-    public abstract void LightAttack1();
-
-    public abstract void HeavyAttack1();
-
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
+using Player.Weapons;
 using UnityEngine;
 
 namespace Actions
@@ -10,8 +11,7 @@ namespace Actions
         [SerializeField] float cooldownTime = .3f;
         [SerializeField] float damageAmount = 10f;
         [SerializeField] string animationTriggerName = "Attack1";
-        [SerializeField] Collider weaponCollider;
-        [SerializeField] BaseWeapon currentWeapon;
+        [SerializeField] Weapon currentWeapon;
         
         bool _isAttacking;
         bool _canAttackAgain = true;
@@ -24,6 +24,7 @@ namespace Actions
 
         public IEnumerator StartAttack()
         {
+            print($"{currentWeapon.name} clappin' cheeks!");
             gameObject.SendMessage("SetTrigger", animationTriggerName);
             gameObject.BroadcastMessage("StartingAttack");
             _isAttacking = true;
@@ -33,11 +34,11 @@ namespace Actions
 
         public void StartAttackSwing()
         {
-            weaponCollider.isTrigger = true;
+            currentWeapon.WeaponCollider.isTrigger = true;
             _objectsDamagedThisAttack.Clear();
         }
 
-        public void EndAttackSwing() => weaponCollider.isTrigger = false;
+        public void EndAttackSwing() => currentWeapon.WeaponCollider.isTrigger = false;
 
         public IEnumerator EndAttack()
         {
