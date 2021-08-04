@@ -47,11 +47,19 @@ namespace TheKiwiCoder {
                 node.OnStop();
             });
         }
-
+        
         public virtual void OnDrawGizmos() { }
-
+        
+        /** Awake, called initial creation along with node context */
+        public virtual void Awake() { }
+        
+        /** OnStart, called at the start of a node traversal */
         protected abstract void OnStart();
+        
+        /** OnStop, called at the end of a node traversal */
         protected abstract void OnStop();
+        
+        /** OnUpdate, called every */
         protected abstract State OnUpdate();
     }
 }

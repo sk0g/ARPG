@@ -1,3 +1,4 @@
+using System;
 using Core;
 using TheKiwiCoder;
 using UnityEngine;
@@ -7,17 +8,16 @@ namespace AI.Actions.Test
     public class RecoverFromHitState : ActionNode
     {
         Health _health;
-
-        void Awake()
-        {
-            _health = context.gameObject.GetComponent<Health>();
-            _health.onHit.AddListener(ReactToHit);
-        }
-
         float lastHitAt = -1f;
 
+        public override void Awake()
+        {
+        }
+        
         protected override void OnStart()
         {
+            _health = context.gameObject.GetComponentInParent<Health>();
+            _health.onHit.AddListener(ReactToHit);
         }
 
         protected override void OnStop()

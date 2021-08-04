@@ -24,7 +24,6 @@ namespace Actions
 
         public IEnumerator StartAttack()
         {
-            print($"{currentWeapon.name} clappin' cheeks!");
             gameObject.SendMessage("SetTrigger", animationTriggerName);
             gameObject.BroadcastMessage("StartingAttack");
             _isAttacking = true;
