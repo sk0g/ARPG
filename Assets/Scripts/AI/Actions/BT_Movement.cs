@@ -12,7 +12,17 @@ namespace AI.Actions
 
         CharacterController _cc;
         GameObject _player;
-
+        
+        public void FootL()
+        {
+            // Animation Event Sink for Attack1
+        }
+        
+        public void FootR()
+        {
+            // Animation Event Sink for Attack1
+        }
+        
         void Awake()
         {
             _cc = GetComponent<CharacterController>();
