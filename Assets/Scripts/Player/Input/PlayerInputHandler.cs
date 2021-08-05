@@ -32,8 +32,7 @@ namespace Player.Input
         public void ReadMovement(InputAction.CallbackContext ctx)
         {
             var movementVec2 = ctx.ReadValue<Vector2>();
-            _currentMovement = Quaternion.Euler(0, 45, 0)
-                               * new Vector3(movementVec2.x, 0, movementVec2.y);
+            _currentMovement = Quaternion.Euler(0, 45, 0) * new Vector3(movementVec2.x, 0, movementVec2.y);
         }
 
         public void ReadDash(InputAction.CallbackContext ctx)
@@ -61,21 +60,18 @@ namespace Player.Input
         {
             if (_gameManager.IsPaused) { return; }
 
-            if (_shouldDash && CanDash()) { DoDash(); }
-            else if (_shouldAttack && CanAttack()) { DoAttack(); }
-            else if (CanMove()) { DoMove(); }
+            if (_shouldDash && CanDash) { DoDash(); }
+            else if (_shouldAttack && CanAttack) { DoAttack(); }
+            else if (CanMove) { DoMove(); }
         }
 
-        bool CanDash() =>
-            !(_dasher.isDashing || _attack1.IsAttacking());
+        bool CanDash => !(_dasher.isDashing || _attack1.IsAttacking());
 
-        bool CanAttack() =>
-            !_dasher.isDashing && _attack1.CanAttackAgain();
+        bool CanAttack => !_dasher.isDashing && _attack1.CanAttackAgain();
 
         // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
         // it is important to move even if the movement input is Vector3.zero
-        bool CanMove() =>
-            !(_dasher.isDashing || _attack1.IsAttacking());
+        bool CanMove => !(_dasher.isDashing || _attack1.IsAttacking());
 
         void DoDash()
         {
@@ -93,9 +89,6 @@ namespace Player.Input
             _shouldAttack = false;
         }
 
-        void DoMove()
-        {
-            _directionalMover.MoveInDirection(_currentMovement);
-        }
+        void DoMove() => _directionalMover.MoveInDirection(_currentMovement);
     }
 }

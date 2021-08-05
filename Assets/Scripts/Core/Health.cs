@@ -29,6 +29,14 @@ namespace Core
             onHit.Invoke();
         }
 
+        public void Heal(float healAmount)
+        {
+            currentHP = Mathf.Min(maxHP, currentHP + healAmount);
+            UpdateHealthBar();
+        }
+
+        public bool CanHeal => currentHP < maxHP;
+
         void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);
     }
 }

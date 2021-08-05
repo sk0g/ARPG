@@ -31,7 +31,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseColorMap:
-        m_Texture: {fileID: 2800000, guid: 989cdd44d30f8c940ab150bdccfd5beb, type: 3}
+        m_Texture: {fileID: 2800000, guid: fa8928ff6cd67b74a93780ae9e05ce67, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BentNormalMap:
@@ -75,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskMap:
-        m_Texture: {fileID: 2800000, guid: 875044e800abcbe47985126630618483, type: 3}
+        m_Texture: {fileID: 2800000, guid: f3b13b1ebf6e39d4ca1ce4ac83706896, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -137,7 +137,7 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
-    - _DecalBlend: 0.5
+    - _DecalBlend: 0.594
     - _DecalColorMask0: 15
     - _DecalColorMask1: 0
     - _DecalColorMask2: 3
@@ -215,8 +215,8 @@ Material:
     - _RefractionModel: 0
     - _SSRefractionProjectionModel: 0
     - _Smoothness: 0.5
-    - _SmoothnessRemapMax: 0
-    - _SmoothnessRemapMin: 0
+    - _SmoothnessRemapMax: 1
+    - _SmoothnessRemapMin: 0.8374628
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
@@ -257,7 +257,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+    - _BaseColor: {r: 0.773, g: 0, b: 0, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
