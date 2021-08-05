@@ -26,11 +26,10 @@ namespace Core.Managers
         }
 
         [SerializeField] GameObject pauseUI;
+        [SerializeField] GameObject deathUI;
 
-        public void SetPauseMenuVisibility(bool visible)
-        {
-            print("Toggling the UI");
-            pauseUI.SetActive(visible);
-        }
+        public void SetPauseMenuVisibility(bool visible) => pauseUI.SetActive(visible);
+
+        public void SetDeathMenuVisibility(bool visibility) => deathUI.SetActive(visibility);
     }
 }
