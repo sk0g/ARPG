@@ -13,7 +13,8 @@ namespace Actions
         [SerializeField] float damageAmount = 10f;
         [SerializeField] string animationTriggerName = "Attack1";
         [SerializeField] Weapon currentWeapon;
-        
+        [SerializeField] bool canCrit = false;
+
         bool _isAttacking;
         bool _canAttackAgain = true;
 
@@ -23,17 +24,16 @@ namespace Actions
 
         List<GameObject> _objectsDamagedThisAttack = new List<GameObject>();
 
-        void Start()
+        void Awake()
         {
             // not barefists!
             if (currentWeapon != null)
             {
                 // TODO: Define a player component's interface similar to BTree's context
                 GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);
-                
             }
         }
-        
+
         public IEnumerator StartAttack()
         {
             // Set Animation Trigger in Player Animation Controller
@@ -71,8 +71,25 @@ namespace Actions
 
             if (damageable == null || _objectsDamagedThisAttack.Contains(other.gameObject)) { return; }
 
-            damageable.TakeDamage(damageAmount);
+            var hitDamage = HitIsCrit(other) ? damageAmount * 2 : damageAmount;
+
+            damageable.TakeDamage(hitDamage);
+
             _objectsDamagedThisAttack.Add(other.gameObject);
+        }
+
+        bool HitIsCrit(Collider other)
+        {
+            if (!canCrit) { return false; }
+
+            var dotProduct = Quaternion.Dot(transform.rotation, other.transform.rotation);
+
+            // between .8 and 1 is considered a crit
+            var hitIsCrit = dotProduct >= .8f;
+
+            if (hitIsCrit) { BroadcastMessage("PlayFeedbacks", "CritFeedback"); }
+
+            return hitIsCrit;
         }
 
         void Hit()

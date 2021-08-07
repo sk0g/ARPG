@@ -23,6 +23,14 @@ namespace Core
             UpdateHealthBar();
         }
 
+        public bool CanHeal => currentHP < maxHP;
+
+        public void Heal(float healAmount)
+        {
+            currentHP = Mathf.Min(maxHP, currentHP + healAmount);
+            UpdateHealthBar();
+        }
+
         public void TakeDamage(float damageAmount)
         {
             currentHP = Mathf.Max(currentHP - damageAmount, 0);
@@ -30,12 +38,6 @@ namespace Core
             onHit.Invoke();
 
             if (currentHP == 0 && !gameObject.CompareTag("Player")) { Die(); }
-        }
-
-        public void Heal(float healAmount)
-        {
-            currentHP = Mathf.Min(maxHP, currentHP + healAmount);
-            UpdateHealthBar();
         }
 
         void Die()
@@ -46,8 +48,6 @@ namespace Core
         }
 
         void DeathCleanup() => Destroy(gameObject);
-
-        public bool CanHeal => currentHP < maxHP;
 
         void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);
     }

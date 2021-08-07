@@ -10,7 +10,7 @@ namespace Core.Managers
 
         [Header("Swordsman")]
         [SerializeField] GameObject swordsman;
-        [SerializeField] [Range(1f, 10f)] float swordsmenSpawnFrequency = 5f;
+        [SerializeField] float swordsmenSpawnFrequency = 5f;
 
         [Header("General")]
         [SerializeField] [Range(1f, 20f)] float unitSpawnRadius = 20f;
