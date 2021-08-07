@@ -129,6 +129,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cffdc8ae-eef0-46da-94ec-5fe33c03f274",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3d0d9c6b-1fa8-489c-8436-67faa66ed182",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
