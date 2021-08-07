@@ -1,4 +1,5 @@
 using Interfaces;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace Player
@@ -7,7 +8,8 @@ namespace Player
     public class PlayerMover : MonoBehaviour, IPusher, IDirectionalMover
     {
         [SerializeField] float movementSpeed = 5f;
-
+        [SerializeField] MMFeedbacks stepFeedback;
+        
         CharacterController _characterController;
 
         void Awake()
@@ -28,5 +30,7 @@ namespace Player
 
         public void PushForward(float distance) => _characterController.Move(
             transform.forward * distance);
+
+        void Step() => stepFeedback?.PlayFeedbacks();
     }
 }

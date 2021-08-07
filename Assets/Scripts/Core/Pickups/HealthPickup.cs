@@ -9,15 +9,13 @@ namespace Core.Pickups
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
-            {
-                var health = other.GetComponent<Health>();
-                if (health.CanHeal)
-                {
-                    health.Heal(healAmount);
-                    Destroy(gameObject);
-                }
-            }
+            if (!other.CompareTag("Player")) { return; } // health pickups are for the player :) 
+
+            var health = other.GetComponent<Health>();
+            if (health == null || !health.CanHeal) return;
+
+            health.Heal(healAmount);
+            Destroy(gameObject);
         }
     }
 }
