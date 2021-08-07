@@ -2,51 +2,54 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace Core.Managers
 {
-    [SerializeField] GameObject plane;
-
-    [Header("Swordsman")]
-    [SerializeField] GameObject swordsman;
-    [SerializeField] [Range(1f, 10f)] float swordsmenSpawnFrequency = 5f;
-
-    [Header("General")]
-    [SerializeField] [Range(1f, 20f)] float unitSpawnRadius = 20f;
-
-    void Awake()
+    public class EnemySpawner : MonoBehaviour
     {
-        if (swordsman == null) { print("Swordsman prefab is null!"); }
+        [SerializeField] GameObject plane;
 
-        if (plane == null) { print("Plane is null!"); }
+        [Header("Swordsman")]
+        [SerializeField] GameObject swordsman;
+        [SerializeField] [Range(1f, 10f)] float swordsmenSpawnFrequency = 5f;
 
-        // 3 to start off with for good luck
-        SpawnSwordsman(3);
+        [Header("General")]
+        [SerializeField] [Range(1f, 20f)] float unitSpawnRadius = 20f;
 
-        StartCoroutine(SpawnSwordsmenPeriodically());
-    }
-
-    IEnumerator SpawnSwordsmenPeriodically()
-    {
-        while (true)
+        void Awake()
         {
-            yield return new WaitForSeconds(swordsmenSpawnFrequency);
-            SpawnSwordsman();
-        }
-    }
+            if (swordsman == null) { print("Swordsman prefab is null!"); }
 
-    void SpawnSwordsman(int count = 1)
-    {
-        foreach (var _ in Enumerable.Range(0, count))
+            if (plane == null) { print("Plane is null!"); }
+
+            // 3 to start off with for good luck
+            SpawnSwordsman(3);
+
+            StartCoroutine(SpawnSwordsmenPeriodically());
+        }
+
+        IEnumerator SpawnSwordsmenPeriodically()
         {
-            var sm = Instantiate(swordsman, gameObject.transform);
-
-            var currentPosition = sm.transform.position;
-            currentPosition.x += RandomFloat();
-            currentPosition.z += RandomFloat();
-
-            sm.transform.SetPositionAndRotation(currentPosition, sm.transform.rotation);
+            while (true)
+            {
+                yield return new WaitForSeconds(swordsmenSpawnFrequency);
+                SpawnSwordsman();
+            }
         }
-    }
 
-    float RandomFloat() => (Random.value * 2 * unitSpawnRadius) - unitSpawnRadius;
+        void SpawnSwordsman(int count = 1)
+        {
+            foreach (var _ in Enumerable.Range(0, count))
+            {
+                var sm = Instantiate(swordsman, gameObject.transform);
+
+                var currentPosition = sm.transform.position;
+                currentPosition.x += RandomFloat();
+                currentPosition.z += RandomFloat();
+
+                sm.transform.SetPositionAndRotation(currentPosition, sm.transform.rotation);
+            }
+        }
+
+        float RandomFloat() => (Random.value * 2 * unitSpawnRadius) - unitSpawnRadius;
+    }
 }
