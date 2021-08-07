@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class PickupManager : MonoBehaviour
+namespace Core.Managers
 {
-    [SerializeField] GameObject bloodPickup;
-
-    public static PickupManager Instance;
-
-    void Awake()
+    public class PickupManager : MonoBehaviour
     {
-        Instance = this;
-    }
+        [SerializeField] GameObject bloodPickup;
 
-    public void SpawnBloodPickup(Vector3 position)
-    {
-        print($"Dropping blood at {position}");
-        var blood = Instantiate(bloodPickup, transform);
+        public static PickupManager Instance;
 
-        blood.transform.SetPositionAndRotation(
-            new Vector3(position.x, -1e-3f, position.z),
-            blood.transform.rotation);
+        void Awake()
+        {
+            Instance = this;
+        }
+
+        public void SpawnBloodPickup(Vector3 position)
+        {
+            var blood = Instantiate(bloodPickup, transform);
+
+            // rotating the blood randomly may be a good idea :) 
+            blood.transform.SetPositionAndRotation(
+                new Vector3(position.x, -1e-3f, position.z),
+                blood.transform.rotation);
+        }
     }
 }
