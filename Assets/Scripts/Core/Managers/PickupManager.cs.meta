@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: ddeee48305ec540c1b9686679ef95401
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bloodPickup: {fileID: 730865971315785706, guid: 6ea4431e222a049738a4cdd9d9435b3e, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

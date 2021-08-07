@@ -27,6 +27,8 @@ namespace Core
             currentHP = Mathf.Max(currentHP - damageAmount, 0);
             UpdateHealthBar();
             onHit.Invoke();
+
+            if (currentHP == 0 && !gameObject.CompareTag("Player")) { Die(); }
         }
 
         public void Heal(float healAmount)
@@ -34,6 +36,15 @@ namespace Core
             currentHP = Mathf.Min(maxHP, currentHP + healAmount);
             UpdateHealthBar();
         }
+
+        void Die()
+        {
+            PickupManager.Instance.SpawnBloodPickup(transform.position);
+            // TODO: ragdoll, disable physical interactions with player, instead of the below
+            Invoke(nameof(DeathCleanup), .2f);
+        }
+
+        void DeathCleanup() => Destroy(gameObject);
 
         public bool CanHeal => currentHP < maxHP;
 
