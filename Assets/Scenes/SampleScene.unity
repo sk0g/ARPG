@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1480.2295, g: 1833.8652, b: 2428.0332, a: 1}
+  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -877,7 +877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498223231}
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -6, y: 9.485282, z: -6}
+  m_LocalPosition: {x: -6.0000005, y: 9.485282, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1887,7 +1887,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.2732131, y: 1}
+    m_SensorSize: {x: 1.7555555, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -3372,6 +3372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barbarian
       objectReference: {fileID: 0}
+    - target: {fileID: 7698225372107154595, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: weaponAnimations
+      value: 
+      objectReference: {fileID: 22100000, guid: 93ac82813b292cb41ac3b1bcd16e9a26, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
 --- !u!114 &7698225372107154595 stripped

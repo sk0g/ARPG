@@ -25,6 +25,23 @@ namespace Player
         void UpdateAnimatorSpeedValue() =>
             _anim.SetFloat(Speed, Mathf.Clamp01(_cc.velocity.magnitude / maxWalkSpeed));
 
-        void SetTrigger(string triggerName) => _anim.SetTrigger(triggerName);
+        void SetTrigger(string triggerName)
+        {
+            _anim.SetTrigger(triggerName);
+        }
+        
+        /*
+         * Override existing animation suite with new animations
+         * i.e. Walk => Axe 2Hand walk
+         */
+        public void SetAnimations(AnimatorOverrideController overrideController)
+        {
+            if (overrideController == null)
+            {
+                Debug.LogError("Animation Override is null");
+                return;
+            }
+            _anim.runtimeAnimatorController = overrideController;
+        }
     }
 }

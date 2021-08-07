@@ -32,5 +32,15 @@ namespace Player
             transform.forward * distance);
 
         void Step() => stepFeedback?.PlayFeedbacks();
+
+        public void FootR()
+        {
+            Step();
+        }
+        
+        public void FootL()
+        {
+            Step();
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
+using Player;
 using Player.Weapons;
 using UnityEngine;
 
@@ -22,8 +23,20 @@ namespace Actions
 
         List<GameObject> _objectsDamagedThisAttack = new List<GameObject>();
 
+        void Start()
+        {
+            // not barefists!
+            if (currentWeapon != null)
+            {
+                // TODO: Define a player component's interface similar to BTree's context
+                GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);
+                
+            }
+        }
+        
         public IEnumerator StartAttack()
         {
+            // Set Animation Trigger in Player Animation Controller
             gameObject.SendMessage("SetTrigger", animationTriggerName);
             gameObject.BroadcastMessage("StartingAttack");
             _isAttacking = true;
@@ -60,6 +73,12 @@ namespace Actions
 
             damageable.TakeDamage(damageAmount);
             _objectsDamagedThisAttack.Add(other.gameObject);
+        }
+
+        void Hit()
+        {
+            print("hit event being called");
+            //Animation Event Sink for imported pre-built animation events  
         }
     }
 }

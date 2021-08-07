@@ -6,6 +6,12 @@ namespace Player.Weapons
     [RequireComponent(typeof(Collider))]
     public abstract class BaseWeapon : MonoBehaviour, IAttack
     {
+        [SerializeField] private AnimatorOverrideController weaponAnimations;
+        public AnimatorOverrideController WeaponAnimations   { 
+            get => weaponAnimations;
+            private set => weaponAnimations = value;
+        }
+        
         // TODO: actually have this access the collider automatically
         [SerializeField] private Collider weaponCollider;
         public Collider WeaponCollider   { 
