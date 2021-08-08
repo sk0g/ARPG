@@ -29,7 +29,7 @@ namespace Player
         {
             _anim.SetTrigger(triggerName);
         }
-        
+
         /*
          * Override existing animation suite with new animations
          * i.e. Walk => Axe 2Hand walk
@@ -41,6 +41,7 @@ namespace Player
                 Debug.LogError("Animation Override is null");
                 return;
             }
+
             _anim.runtimeAnimatorController = overrideController;
         }
     }

@@ -74,3 +74,9 @@ crashlytics-build.properties
 mono_crash*
 *.DS_Store
 .idea/
+
+# Random files that keep getting deleted and added back?
+Assets/Asset Packs/Feel/NiceVibrations/OlderVersions/v1.7/NiceVibrations-v-1-7.unitypackage.meta
+Assets/Asset Packs/Feel/NiceVibrations/OlderVersions/v2.0.1/NiceVibrations-v-2-0-1.unitypackage.meta
+Assets/Asset Packs/ExplosiveLLC/Warrior FREE/InputSystem Support - Requires InputSystem Package.unitypackage.meta
+Assets/Asset Packs/ExplosiveLLC/RPG Character Mecanim Animation Pack FREE/InputSystem - Requires InputSystem Package.unitypackage.meta

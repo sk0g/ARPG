@@ -775,21 +775,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.37882155
+      - time: 0.3974882
         functionName: StartAttackSwing
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.57429487
+      - time: 0.44896153
         functionName: Hit
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.81260234
+      - time: 0.463269
         functionName: EndAttack
         data: 
         objectReferenceParameter: {instanceID: 0}

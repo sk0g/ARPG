@@ -9,8 +9,9 @@ namespace Player
     {
         [SerializeField] float movementSpeed = 5f;
         [SerializeField] MMFeedbacks stepFeedback;
-        
+
         CharacterController _characterController;
+        float _currentMovementMagnitude;
 
         void Awake()
         {
@@ -20,6 +21,7 @@ namespace Player
         public void MoveInDirection(Vector3 currentMovement)
         {
             LookAtDirection(currentMovement);
+            _currentMovementMagnitude = currentMovement.magnitude;
 
             _characterController.Move(
                 movementSpeed * Time.fixedDeltaTime * currentMovement);
@@ -31,13 +33,18 @@ namespace Player
         public void PushForward(float distance) => _characterController.Move(
             transform.forward * distance);
 
-        void Step() => stepFeedback?.PlayFeedbacks();
+        void Step()
+        {
+            if (stepFeedback == null || _currentMovementMagnitude < .5f) { return; }
+
+            stepFeedback.PlayFeedbacks(transform.position, _currentMovementMagnitude);
+        }
 
         public void FootR()
         {
             Step();
         }
-        
+
         public void FootL()
         {
             Step();
