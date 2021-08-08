@@ -131,12 +131,34 @@ namespace Player.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""fc010442-ccf0-4d8a-9555-06c683f5a39b"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9b831e1d-5f2c-48ea-88f6-f54280728856"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a231c46d-ef56-408a-9264-74c183fbb6fd"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack 1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -159,6 +181,17 @@ namespace Player.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b69264ca-7b52-441b-9980-271bf2349701"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },

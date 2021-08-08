@@ -8,19 +8,21 @@ namespace Core.Managers
     {
         [SerializeField] GameObject plane;
 
-        [Header("Swordsman")]
-        [SerializeField] GameObject swordsman;
+        [Header("Swordsman")] [SerializeField] GameObject swordsman;
         [SerializeField] float swordsmenSpawnFrequency = 5f;
 
-        [Header("General")]
-        [SerializeField] [Range(1f, 20f)] float unitSpawnRadius = 20f;
+        [Header("General")] [SerializeField] [Range(1f, 20f)]
+        float unitSpawnRadius = 20f;
 
         void Awake()
         {
             if (swordsman == null) { print("Swordsman prefab is null!"); }
 
             if (plane == null) { print("Plane is null!"); }
+        }
 
+        void OnEnable()
+        {
             // 3 to start off with for good luck
             SpawnSwordsman(3);
 
