@@ -14,9 +14,13 @@ namespace Core
 
         MMHealthBar _healthBar;
 
+        Cleanup _cleanup;
+        
         void Awake()
         {
             _healthBar = GetComponentInChildren<MMHealthBar>();
+            _cleanup = GetComponent<Cleanup>();
+            
             currentHP = maxHP;
 
             // finally, draw the health bar
@@ -43,8 +47,8 @@ namespace Core
         void Die()
         {
             PickupManager.Instance.SpawnBloodPickup(transform.position);
-            // TODO: ragdoll, disable physical interactions with player, instead of the below
-            Invoke(nameof(DeathCleanup), .2f);
+            // TODO: Maybe make this callable if exists rather then a hard variable set?
+            _cleanup.CleanUp();
         }
 
         void DeathCleanup() => Destroy(gameObject);

@@ -71,7 +71,7 @@ namespace Actions
             if (other.gameObject == gameObject) { return; }
 
             var damageable = other.GetComponent<IDamageable>();
-            if (other.name != "Axe_M" && other.name != "Plane") print($"collided with {other.name}");
+            //if (other.name != "Axe_M" && other.name != "Plane") print($"collided with {other.name}");
 
             if (damageable == null || _objectsDamagedThisAttack.Contains(other.gameObject)) { return; }
 
