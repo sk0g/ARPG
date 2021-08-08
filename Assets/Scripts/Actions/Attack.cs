@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
+using JetBrains.Annotations;
 using Player;
 using Player.Weapons;
 using UnityEngine;
@@ -13,14 +14,14 @@ namespace Actions
         [SerializeField] float damageAmount = 10f;
         [SerializeField] string animationTriggerName = "Attack1";
         [SerializeField] Weapon currentWeapon;
-        [SerializeField] bool canCrit = false;
+        [SerializeField] bool canCrit;
 
         bool _isAttacking;
         bool _canAttackAgain = true;
 
-        public bool CanAttackAgain() => !_isAttacking && _canAttackAgain;
+        public bool CanAttackAgain => !_isAttacking && _canAttackAgain;
 
-        public bool IsAttacking() => _isAttacking;
+        public bool IsAttacking => _isAttacking;
 
         List<GameObject> _objectsDamagedThisAttack = new List<GameObject>();
 
@@ -44,14 +45,17 @@ namespace Actions
             yield return null;
         }
 
+        [UsedImplicitly]
         public void StartAttackSwing()
         {
             currentWeapon.WeaponCollider.isTrigger = true;
             _objectsDamagedThisAttack.Clear();
         }
 
+        [UsedImplicitly]
         public void EndAttackSwing() => currentWeapon.WeaponCollider.isTrigger = false;
 
+        [UsedImplicitly]
         public IEnumerator EndAttack()
         {
             _isAttacking = false;
@@ -92,6 +96,7 @@ namespace Actions
             return hitIsCrit;
         }
 
+        [UsedImplicitly]
         void Hit()
         {
             print("hit event being called");

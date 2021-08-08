@@ -65,13 +65,13 @@ namespace Player.Input
             else if (CanMove) { DoMove(); }
         }
 
-        bool CanDash => !(_dasher.isDashing || _attack1.IsAttacking());
+        bool CanDash => !(_dasher.isDashing || _attack1.IsAttacking);
 
-        bool CanAttack => !_dasher.isDashing && _attack1.CanAttackAgain();
+        bool CanAttack => !_dasher.isDashing && _attack1.CanAttackAgain;
 
         // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
         // it is important to move even if the movement input is Vector3.zero
-        bool CanMove => !(_dasher.isDashing || _attack1.IsAttacking());
+        bool CanMove => !(_dasher.isDashing || _attack1.IsAttacking);
 
         void DoDash()
         {
