@@ -3811,7 +3811,7 @@ MonoBehaviour:
   cooldownTime: 0.3
   damageAmount: 10
   animationTriggerName: Attack1
-  currentWeapon: {fileID: 7698225372107154595}
+  currentWeapon: {fileID: 7698225372107154593}
   canCrit: 1
 --- !u!54 &1779561151
 Rigidbody:
@@ -3980,6 +3980,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   DebugActive: 0
+--- !u!1 &1929877436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7698225371319537687, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+  m_PrefabInstance: {fileID: 7698225372107154590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1981835928
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,32 +4506,59 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7698225371319537687, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 7698225371319537687, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Name
+      value: The Slammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698225371319537689, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Name
+      value: Axe M
+      objectReference: {fileID: 0}
     - target: {fileID: 7698225371319541411, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_Name
       value: Barbarian
       objectReference: {fileID: 0}
     - target: {fileID: 7698225372107154595, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: weaponCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698225372107154595, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: weaponAnimations
       value: 
       objectReference: {fileID: 22100000, guid: 93ac82813b292cb41ac3b1bcd16e9a26, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7698225372107154595, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
 --- !u!4 &7698225372107154591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7698225371319174135, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
   m_PrefabInstance: {fileID: 7698225372107154590}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7698225372107154595 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7698225372107154595, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+--- !u!65 &7698225372107154592 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1943324019, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
   m_PrefabInstance: {fileID: 7698225372107154590}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &7698225372107154593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929877436}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56b2b20cb7cb4a0c9c51ab326afe9969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponAnimations: {fileID: 22100000, guid: 93ac82813b292cb41ac3b1bcd16e9a26, type: 2}
+  weaponCollider: {fileID: 7698225372107154592}
+  description: IT SLAMS! CMON AND JAMS
+  range: 5
 --- !u!137 &7698225372107154597 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7698225371324748757, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}

@@ -12,7 +12,7 @@ public class Cleanup : MonoBehaviour
     {
         if (componentsToDestroy.Count != 0)
         {
-            // destroy any components specifciued iun the list
+            // destroy any components specifciued in the list, including itself
             foreach (Component c in componentsToDestroy) { Destroy(c);}
             Destroy(this);
         }

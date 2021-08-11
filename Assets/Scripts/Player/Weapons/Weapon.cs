@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Player.Weapons
 {
     public class Weapon : BaseWeapon
@@ -6,7 +8,7 @@ namespace Player.Weapons
 
         public override void Awake()
         {
-            print($"{Name} ready to clap cheeks!");
+            base.Awake();
         }
 
         public override void Hit() {}

@@ -15,18 +15,17 @@ namespace Player.Weapons
         public AnimatorOverrideController WeaponAnimations
         {
             get => weaponAnimations;
-            private set => weaponAnimations = value;
+            set => weaponAnimations = value;
         }
 
-        // TODO: actually have this access the collider automatically
         [SerializeField] Collider weaponCollider;
 
         public Collider WeaponCollider
         {
             get => weaponCollider;
-            private set => weaponCollider = value;
+            set => weaponCollider = value;
         }
-
+        
         protected string Name => gameObject.name;
 
         // every weapon needs a name 
@@ -55,9 +54,22 @@ namespace Player.Weapons
 
         public virtual void Awake()
         {
+            if (WeaponCollider == null) { FetchCollider(); }
+            if (WeaponAnimations == null) { FetchAnimations(); }
             print($"{Name} ready to clap cheeks!");
         }
 
+        public void FetchAnimations()
+        {
+            Debug.LogWarning(Name + "'s Animations wasn't pre-set, attempting to fetch it");
+        }
+        
+        public void FetchCollider()
+        {
+            Debug.LogWarning(Name + "'s Collider wasn't pre-set, attempting to fetch it");
+            WeaponCollider = GetComponent<Collider>();
+        }
+        
         public abstract void Damage();
         public abstract void Hit();
         public abstract void LightAttack1();
