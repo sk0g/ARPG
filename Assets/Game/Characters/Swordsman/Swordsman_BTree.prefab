@@ -345,6 +345,9 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1411558570647563103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,12 +391,13 @@ MonoBehaviour:
   componentsToDestroy:
   - {fileID: 1411558570647563102}
   - {fileID: 1411558570647563103}
-  - {fileID: 1411558570647563096}
   - {fileID: 2052925590495701343}
   - {fileID: 2052925590488407093}
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  rootNode: {fileID: 2052925590495310823}
+  ragdollForceStrength: 25
+  ragdollForceRadius: 20
+  chanceForLimbsToJerkOnRagdoll: 0.3
+  limbJerkForceDivisor: 2
 --- !u!1 &2052925590495800917
 GameObject:
   m_ObjectHideFlags: 0

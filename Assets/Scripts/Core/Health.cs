@@ -11,16 +11,14 @@ namespace Core
         [SerializeField] float maxHP = 100f;
         [SerializeField] float currentHP;
         public UnityEvent onHit;
+        public UnityEvent<float> onDeath; // pass in the overkill amount for scaling blood and knock-back
 
         MMHealthBar _healthBar;
 
-        Cleanup _cleanup;
-        
         void Awake()
         {
             _healthBar = GetComponentInChildren<MMHealthBar>();
-            _cleanup = GetComponent<Cleanup>();
-            
+
             currentHP = maxHP;
 
             // finally, draw the health bar
@@ -37,21 +35,26 @@ namespace Core
 
         public void TakeDamage(float damageAmount)
         {
-            currentHP = Mathf.Max(currentHP - damageAmount, 0);
-            UpdateHealthBar();
             onHit.Invoke();
 
-            if (currentHP == 0 && !gameObject.CompareTag("Player")) { Die(); }
+            currentHP -= damageAmount; // may be less than 0, for the overkill
+
+            if (currentHP <= 0 && !gameObject.CompareTag("Player")) { Die(); }
+
+            currentHP = Mathf.Max(currentHP, 0); // should now be a valid value
+            UpdateHealthBar();
         }
 
         void Die()
         {
             PickupManager.Instance.SpawnBloodPickup(transform.position);
-            // TODO: Maybe make this callable if exists rather then a hard variable set?
-            _cleanup.CleanUp();
+
+            onDeath.Invoke(OverkillMultiplier);
         }
 
-        void DeathCleanup() => Destroy(gameObject);
+        // Below returns (hp => result) -20 => 3, -15 => 2.5, -5 => 1.5, 0 => 1, etc
+        // Weird result when character is not dead though
+        float OverkillMultiplier => (-currentHP / 10) + 1;
 
         void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);
     }

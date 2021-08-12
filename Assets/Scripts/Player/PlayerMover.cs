@@ -1,4 +1,5 @@
 using Interfaces;
+using JetBrains.Annotations;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -23,6 +24,8 @@ namespace Player
             LookAtDirection(currentMovement);
             _currentMovementMagnitude = currentMovement.magnitude;
 
+            currentMovement += Vector3.down; // gravity :)
+
             _characterController.Move(
                 movementSpeed * Time.fixedDeltaTime * currentMovement);
         }
@@ -31,23 +34,19 @@ namespace Player
             transform.LookAt(transform.position + offset);
 
         public void PushForward(float distance) => _characterController.Move(
-            transform.forward * distance);
+            (transform.forward + Vector3.down) * distance);
+
+        [UsedImplicitly]
+        public void FootR() => Step();
+
+        [UsedImplicitly]
+        public void FootL() => Step();
 
         void Step()
         {
             if (stepFeedback == null || _currentMovementMagnitude < .5f) { return; }
 
             stepFeedback.PlayFeedbacks(transform.position, _currentMovementMagnitude);
-        }
-
-        public void FootR()
-        {
-            Step();
-        }
-
-        public void FootL()
-        {
-            Step();
         }
     }
 }
