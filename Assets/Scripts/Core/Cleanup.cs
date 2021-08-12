@@ -1,19 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Cleanup : MonoBehaviour
+namespace Core
 {
-    [SerializeField] List<Component> componentsToDestroy = new List<Component>();
-    public UnityEvent onDeath;
-
-    public void CleanUp()
+    public class Cleanup : MonoBehaviour
     {
-        if (componentsToDestroy.Count != 0)
+        [SerializeField] List<Component> componentsToDestroy = new();
+
+        public void CleanUp()
         {
-            // destroy any components specifciued in the list, including itself
-            foreach (Component c in componentsToDestroy) { Destroy(c);}
+            if (componentsToDestroy.Count == 0) return;
+
+            // destroy any components specified in the list, including itself
+            componentsToDestroy.ForEach(Destroy);
             Destroy(this);
         }
     }
