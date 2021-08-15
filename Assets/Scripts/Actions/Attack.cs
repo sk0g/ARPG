@@ -28,7 +28,7 @@ namespace Actions
         void Awake()
         {
             // not barefists!
-            if (currentWeapon != null)
+            if (currentWeapon != null && currentWeapon.WeaponAnimations != null)
             {
                 // TODO: Define a player component's interface similar to BTree's context
                 GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);

@@ -154,7 +154,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
-  attackRange: 2.5
+  attackRange: 2
 --- !u!114 &1108047932551337761
 MonoBehaviour:
   m_ObjectHideFlags: 0

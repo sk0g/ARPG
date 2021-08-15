@@ -24,7 +24,7 @@ namespace Core.Managers
         void OnEnable()
         {
             // 3 to start off with for good luck
-            SpawnSwordsman(3);
+            SpawnSwordsman(1);
 
             StartCoroutine(SpawnSwordsmenPeriodically());
         }
