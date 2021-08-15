@@ -12,21 +12,24 @@ namespace AI.Actions
 
         CharacterController _cc;
         GameObject _player;
-        
+        Collider _playerCollider;
+
         public void FootL()
         {
             // Animation Event Sink for Attack1
         }
-        
+
         public void FootR()
         {
             // Animation Event Sink for Attack1
         }
-        
+
         void Awake()
         {
             _cc = GetComponent<CharacterController>();
+
             _player = GameObject.FindWithTag("Player");
+            _playerCollider = _player.GetComponent<Collider>();
         }
 
         public void RunInDirection(Vector3 movementDirection) =>
@@ -35,7 +38,8 @@ namespace AI.Actions
         public void WalkInDirection(Vector3 movementDirection) =>
             _cc.SimpleMove(movementDirection.normalized * walkSpeed);
 
-        public float DistanceToPlayer() => Vector3.Distance(transform.position, _player.transform.position);
+        public float DistanceToPlayer() =>
+            Vector3.Distance(transform.position, _playerCollider.ClosestPoint(transform.position));
 
         public Vector3 OffsetToPlayer()
         {
