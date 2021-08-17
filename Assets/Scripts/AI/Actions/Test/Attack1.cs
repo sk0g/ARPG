@@ -1,17 +1,50 @@
+using System.Linq;
+using Actions;
 using TheKiwiCoder;
 using UnityEngine;
 
-public class Attack1 : ActionNode
+namespace AI.Actions.Test
 {
-    protected override void OnStart()
+    public class Attack1 : ActionNode
     {
-        context.animator.SetTrigger("Attack");
-    }
+        Attack _attack;
 
-    protected override void OnStop() {
-    }
+        Attack Attack
+        {
+            get
+            {
+                if (_attack != null) { return _attack; }
 
-    protected override State OnUpdate() {
-        return State.Success;
+                _attack = context.gameObject.GetComponents<Attack>()
+                    .First(a => a.AnimationName == "Attack1");
+                if (_attack != null) { return _attack; }
+
+                Debug.LogError("BT attack action name must match Attack.animationTriggerName");
+                return null;
+            }
+        }
+
+        protected override void OnStart()
+        {
+            if (Attack == null) { Debug.LogError("Null attack :("); }
+
+            if (Attack.CanAttack)
+            {
+                Attack.StopAllCoroutines();
+                Attack.StartAttack();
+            }
+        }
+
+        protected override void OnStop()
+        {
+            if (!Attack.CanAttack) { Attack.Interrupt(); }
+        }
+
+        protected override State OnUpdate()
+        {
+            if (Attack.IsAttacking) { return State.Running; }
+
+            return State.Success;
+        }
     }
 }

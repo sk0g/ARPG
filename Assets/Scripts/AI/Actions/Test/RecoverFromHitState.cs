@@ -1,4 +1,3 @@
-using System;
 using Core;
 using TheKiwiCoder;
 using UnityEngine;
@@ -8,12 +7,13 @@ namespace AI.Actions.Test
     public class RecoverFromHitState : ActionNode
     {
         Health _health;
-        float lastHitAt = -1f;
+        float _lastHitAt = -1f;
+        static readonly int Hit = Animator.StringToHash("Hit");
 
         public override void Awake()
         {
         }
-        
+
         protected override void OnStart()
         {
             _health = context.gameObject.GetComponentInParent<Health>();
@@ -26,13 +26,13 @@ namespace AI.Actions.Test
 
         void ReactToHit()
         {
-            context.animator.SetTrigger("Hit");
-            lastHitAt = Time.time;
+            context.animator.SetTrigger(Hit);
+            _lastHitAt = Time.time;
         }
 
         protected override State OnUpdate()
         {
-            if (Time.time >= (lastHitAt + 1)) { return State.Failure; }
+            if (Time.time >= (_lastHitAt + 1)) { return State.Failure; }
 
             return State.Running;
         }

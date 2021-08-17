@@ -67,7 +67,7 @@ namespace Player.Input
 
         bool CanDash => !(_dasher.isDashing || _attack1.IsAttacking);
 
-        bool CanAttack => !_dasher.isDashing && _attack1.CanAttackAgain;
+        bool CanAttack => !_dasher.isDashing && _attack1.CanAttack;
 
         // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
         // it is important to move even if the movement input is Vector3.zero
@@ -85,7 +85,7 @@ namespace Player.Input
         {
             if (_currentMovement != Vector3.zero) { _directionalMover.LookAtDirection(_currentMovement); }
 
-            StartCoroutine(_attack1.StartAttack());
+            _attack1.StartAttack();
             _shouldAttack = false;
         }
 

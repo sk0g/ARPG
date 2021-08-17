@@ -25,7 +25,7 @@ namespace Player.Weapons
             get => weaponCollider;
             set => weaponCollider = value;
         }
-        
+
         protected string Name => gameObject.name;
 
         // every weapon needs a name 
@@ -55,7 +55,9 @@ namespace Player.Weapons
         public virtual void Awake()
         {
             if (WeaponCollider == null) { FetchCollider(); }
+
             if (WeaponAnimations == null) { FetchAnimations(); }
+
             print($"{Name} ready to clap cheeks!");
         }
 
@@ -63,13 +65,13 @@ namespace Player.Weapons
         {
             Debug.LogWarning(Name + "'s Animations wasn't pre-set, attempting to fetch it");
         }
-        
+
         public void FetchCollider()
         {
             Debug.LogWarning(Name + "'s Collider wasn't pre-set, attempting to fetch it");
             WeaponCollider = GetComponent<Collider>();
         }
-        
+
         public abstract void Damage();
         public abstract void Hit();
         public abstract void LightAttack1();

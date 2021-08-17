@@ -9,15 +9,16 @@ namespace AI.Actions.Test
         float idealPlayerProximity = 4f;
 
         BT_Movement _mover;
+        static readonly int Speed = Animator.StringToHash("Speed");
 
         protected override void OnStart()
         {
-            context.animator.SetFloat("Speed", 1f);
+            context.animator.SetFloat(Speed, 1f);
         }
 
         protected override void OnStop()
         {
-            context.animator.SetFloat("Speed", 0f);
+            context.animator.SetFloat(Speed, 0f);
         }
 
         protected override State OnUpdate()

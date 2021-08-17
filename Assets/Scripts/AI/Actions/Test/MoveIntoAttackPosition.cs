@@ -1,29 +1,33 @@
 using TheKiwiCoder;
 using UnityEngine;
 
-public class MoveIntoAttackPosition : ActionNode
+namespace AI.Actions.Test
 {
-    [SerializeField] float attackRange;
-
-    protected override void OnStart()
+    public class MoveIntoAttackPosition : ActionNode
     {
-        context.animator.SetFloat("Speed", .5f);
-    }
+        [SerializeField] float attackRange;
+        static readonly int Speed = Animator.StringToHash("Speed");
 
-    protected override void OnStop()
-    {
-        context.animator.SetFloat("Speed", .0f);
-    }
+        protected override void OnStart()
+        {
+            context.animator.SetFloat(Speed, .5f);
+        }
 
-    protected override State OnUpdate()
-    {
-        if (context.mover.DistanceToPlayer() <= attackRange) { return State.Success; }
+        protected override void OnStop()
+        {
+            context.animator.SetFloat(Speed, .0f);
+        }
 
-        if (context.mover.DistanceToPlayer() >= attackRange + 5) { return State.Failure; }
+        protected override State OnUpdate()
+        {
+            if (context.mover.DistanceToPlayer() <= attackRange) { return State.Success; }
 
-        context.mover.WalkInDirection(context.mover.OffsetToPlayer());
-        context.mover.LookAtDirection(context.mover.OffsetToPlayer());
+            if (context.mover.DistanceToPlayer() >= attackRange + 5) { return State.Failure; }
 
-        return State.Running;
+            context.mover.WalkInDirection(context.mover.OffsetToPlayer());
+            context.mover.LookAtDirection(context.mover.OffsetToPlayer());
+
+            return State.Running;
+        }
     }
 }

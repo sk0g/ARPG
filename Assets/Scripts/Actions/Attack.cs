@@ -16,33 +16,37 @@ namespace Actions
         [SerializeField] Weapon currentWeapon;
         [SerializeField] bool canCrit;
 
+        bool _shouldEmitWeaponTrailEvents;
+
         bool _isAttacking;
         bool _canAttackAgain = true;
 
-        public bool CanAttackAgain => !_isAttacking && _canAttackAgain;
+        public string AnimationName => animationTriggerName;
+
+        public bool CanAttack => !_isAttacking && _canAttackAgain;
 
         public bool IsAttacking => _isAttacking;
 
-        List<GameObject> _objectsDamagedThisAttack = new List<GameObject>();
+        List<GameObject> _objectsDamagedThisAttack = new();
 
         void Awake()
         {
-            // not barefists!
+            // not bare-fist!
             if (currentWeapon != null && currentWeapon.WeaponAnimations != null)
             {
                 // TODO: Define a player component's interface similar to BTree's context
                 GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);
             }
+
+            _shouldEmitWeaponTrailEvents = GetComponentInChildren<WeaponTrailController>() != null;
         }
 
-        public IEnumerator StartAttack()
+        public void StartAttack()
         {
-            // Set Animation Trigger in Player Animation Controller
             gameObject.SendMessage("SetTrigger", animationTriggerName);
-            gameObject.BroadcastMessage("StartingAttack");
-            _isAttacking = true;
+            if (_shouldEmitWeaponTrailEvents) { gameObject.BroadcastMessage("StartingAttack"); }
 
-            yield return null;
+            _isAttacking = true;
         }
 
         [UsedImplicitly]
@@ -55,16 +59,26 @@ namespace Actions
         [UsedImplicitly]
         public void EndAttackSwing() => currentWeapon.WeaponCollider.isTrigger = false;
 
+        public void Interrupt()
+        {
+            if (CanAttack) { return; }
+
+            EndAttackSwing();
+            StartCoroutine(EndAttack());
+        }
+
         [UsedImplicitly]
         public IEnumerator EndAttack()
         {
             _isAttacking = false;
-            gameObject.BroadcastMessage("EndingAttack");
+            if (_shouldEmitWeaponTrailEvents) { gameObject.BroadcastMessage("EndingAttack"); }
 
             yield return new WaitForSeconds(cooldownTime);
 
             _canAttackAgain = true;
         }
+
+        public void PassOnTriggerEnter(Collider other) => OnTriggerEnter(other);
 
         void OnTriggerEnter(Collider other)
         {
