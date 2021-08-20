@@ -16,16 +16,18 @@ public class Attack : MonoBehaviour
     [SerializeField] Weapon currentWeapon;
     [SerializeField] bool canCrit;
 
-    bool _shouldEmitWeaponTrailEvents;
+    bool _shouldEmitWeaponTrailEvents; // assigned to in Awake
 
-    bool _isAttacking;
-    bool _canAttackAgain = true;
+    bool _isAttacking; // currently involved in an animation event?
+    bool _canAttackAgain = true; // not attacking, and has served the cooldown time?
 
     public string AnimationName => animationTriggerName;
 
     public bool CanAttack => !_isAttacking && _canAttackAgain;
 
     public bool IsAttacking => _isAttacking;
+
+    bool WeaponIsDamaging => currentWeapon.WeaponCollider.isTrigger;
 
     List<GameObject> _objectsDamagedThisAttack = new();
 
@@ -47,14 +49,11 @@ public class Attack : MonoBehaviour
         if (_shouldEmitWeaponTrailEvents) { gameObject.BroadcastMessage("StartingAttack"); }
 
         _isAttacking = true;
+        _objectsDamagedThisAttack.Clear();
     }
 
     [UsedImplicitly]
-    public void StartAttackSwing()
-    {
-        currentWeapon.WeaponCollider.isTrigger = true;
-        _objectsDamagedThisAttack.Clear();
-    }
+    public void StartAttackSwing() => currentWeapon.WeaponCollider.isTrigger = true;
 
     [UsedImplicitly]
     public void EndAttackSwing() => currentWeapon.WeaponCollider.isTrigger = false;
@@ -78,27 +77,28 @@ public class Attack : MonoBehaviour
         _canAttackAgain = true;
     }
 
-    public void PassOnTriggerEnter(Collider other)
-    {
-        if (currentWeapon.WeaponCollider.isTrigger) { OnTriggerEnter(other); }
-    }
+    public void OnTriggerEnter(Collider other) => MaybeDamage(other);
 
-    void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision other) => MaybeDamage(other.collider);
+
+    void MaybeDamage(Collider other)
     {
-        if (other.gameObject == gameObject) { return; }
+        // big brain way of detecting whether two game objects have a parent-child relationship 
+        // NOTE: big brain way is broken. Enemy root is actually the spawner, but it still works... For now.
+        if (other.gameObject.transform.root == gameObject.transform.root) { return; }
+
+        if (!WeaponIsDamaging) { return; } // random collision, instead of an attack driven one
 
         var damageable = other.GetComponent<IDamageable>();
-
         if (damageable == null || _objectsDamagedThisAttack.Contains(other.gameObject)) { return; }
 
-        var hitDamage = HitIsCrit(other) ? damageAmount * 2 : damageAmount;
+        var hitDamage = HitIsCrit(other.gameObject) ? damageAmount * 2 : damageAmount;
 
         damageable.TakeDamage(hitDamage);
-
         _objectsDamagedThisAttack.Add(other.gameObject);
     }
 
-    bool HitIsCrit(Collider other)
+    bool HitIsCrit(GameObject other)
     {
         if (!canCrit) { return false; }
 
@@ -112,8 +112,7 @@ public class Attack : MonoBehaviour
         return hitIsCrit;
     }
 
-    //Animation Event Sink for imported pre-built animation events  
     [UsedImplicitly]
-    void Hit() => print("hit event being called");
+    void Hit() { } // Animation Event Sink for imported pre-built animation events  
 }
 }

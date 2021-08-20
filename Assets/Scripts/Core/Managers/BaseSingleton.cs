@@ -2,29 +2,29 @@ using UnityEngine;
 
 namespace Core.Managers
 {
-    public class SingletonSimple : MonoBehaviour
+public class SingletonSimple : MonoBehaviour
+{
+    static SingletonSimple _instance;
+
+    public static SingletonSimple Instance
     {
-        static SingletonSimple _instance;
-
-        public static SingletonSimple Instance
+        get
         {
-            get
+            if (!_instance)
             {
-                if (!_instance)
-                {
-                    _instance = new GameObject().AddComponent<SingletonSimple>();
-                    // name it for easy recognition
+                _instance = new GameObject().AddComponent<SingletonSimple>();
+                // name it for easy recognition
 
-                    _instance.name = _instance.GetType().ToString();
-                    // mark root as DontDestroyOnLoad();
+                _instance.name = _instance.GetType().ToString();
+                // mark root as DontDestroyOnLoad();
 
-                    DontDestroyOnLoad(_instance.gameObject);
-                }
-
-                return _instance;
+                DontDestroyOnLoad(_instance.gameObject);
             }
-        }
 
-        // implement your Awake, Start, Update, or other methods here...
+            return _instance;
+        }
     }
+
+    // implement your Awake, Start, Update, or other methods here...
+}
 }

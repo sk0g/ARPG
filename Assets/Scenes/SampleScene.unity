@@ -1746,9 +1746,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7698225372107154591}
     m_Modifications:
+    - target: {fileID: 1200661383941978, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622633989260968, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1962516439210982, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
       propertyPath: m_Name
       value: BloodSprayFX_Extra
+      objectReference: {fileID: 0}
+    - target: {fileID: 1962516439210982, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4047206764224530, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
       propertyPath: m_RootOrder
@@ -3840,7 +3852,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779561133}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 80
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -4481,6 +4493,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779561137}
     m_Modifications:
+    - target: {fileID: 1740989655, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943324019, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7698225371319173763, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4532,6 +4552,10 @@ PrefabInstance:
     - target: {fileID: 7698225371319537687, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_Name
       value: The Slammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698225371319537687, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7698225371319537689, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_Name

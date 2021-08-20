@@ -1,7 +1,7 @@
 namespace Interfaces
 {
-    public interface IDamageable
-    {
-        void TakeDamage(float damageAmount);
-    }
+public interface IDamageable
+{
+    void TakeDamage(float damageAmount);
+}
 }

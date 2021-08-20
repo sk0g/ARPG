@@ -1,7 +1,7 @@
 namespace Interfaces
 {
-    public interface IPusher
-    {
-        void PushForward(float distance);
-    }
+public interface IPusher
+{
+    void PushForward(float distance);
+}
 }

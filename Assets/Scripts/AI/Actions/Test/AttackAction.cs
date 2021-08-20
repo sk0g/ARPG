@@ -18,7 +18,7 @@ public class AttackAction : ActionNode
             if (_attack != null) { return _attack; }
 
             _attack = context.gameObject.GetComponents<Attack>()
-                .First(a => a.AnimationName == attackAnimationName);
+                             .First(a => a.AnimationName == attackAnimationName);
             if (_attack != null) { return _attack; }
 
             Debug.LogError("BT attack action name must match Attack.animationTriggerName");

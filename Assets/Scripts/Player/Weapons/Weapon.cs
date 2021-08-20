@@ -1,39 +1,49 @@
+using System.Collections.Generic;
 using System.Linq;
 using Actions;
 using UnityEngine;
 
 namespace Player.Weapons
 {
-    public class Weapon : BaseWeapon
+public class Weapon : BaseWeapon
+{
+    Weapon(float range, string name) : base(range, name) { }
+
+    List<Attack> _attacks;
+
+    public override void Awake()
     {
-        Weapon(float range, string name) : base(range, name)
-        {
-        }
-
-        public override void Hit()
-        {
-        }
-
-        public override void Damage()
-        {
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            FindObjectsOfType<Attack>()?.First(a => a.IsAttacking).PassOnTriggerEnter(other);
-        }
-
-        public override void LightAttack1()
-        {
-            print($"collided with {Name}");
-            print($"collided with {Description}");
-            print($"collided with {Range.ToString()}");
-        }
-
-        public override void HeavyAttack1()
-        {
-            print($"collided with {Name}");
-            print($"collided with {Description}");
-        }
+        base.Awake();
+        _attacks = GetComponentsInParent<Attack>().ToList();
     }
+
+    public override void Hit() { }
+
+    public override void Damage() { }
+
+    void OnTriggerEnter(Collider other)
+    {
+        _attacks?.FirstOrDefault(a => WeaponCollider.isTrigger && a.enabled && a.IsAttacking)
+                ?.OnTriggerEnter(other);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        _attacks?.FirstOrDefault(a => WeaponCollider.isTrigger && a.enabled && a.IsAttacking)
+                ?.OnCollisionEnter(other);
+    }
+
+    public override void LightAttack1()
+    {
+        print($"collided with {Name}");
+        print($"collided with {Description}");
+        print($"collided with {Range}");
+    }
+
+    public override void HeavyAttack1()
+    {
+        print($"collided with {Name}");
+        print($"collided with {Description}");
+    }
+}
 }

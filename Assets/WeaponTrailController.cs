@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class WeaponTrailController : MonoBehaviour
@@ -10,15 +11,11 @@ public class WeaponTrailController : MonoBehaviour
         DisableEmitter();
     }
 
-    void StartingAttack()
-    {
-        StartEmitting();
-    }
+    [UsedImplicitly]
+    void StartingAttack() => StartEmitting();
 
-    void EndingAttack()
-    {
-        DisableEmitter();
-    }
+    [UsedImplicitly]
+    void EndingAttack() => DisableEmitter();
 
     void DisableEmitter() => _trailRenderer.emitting = false;
 

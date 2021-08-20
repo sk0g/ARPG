@@ -3,14 +3,11 @@ using UnityEngine;
 
 namespace Player.Feedbacks
 {
-    public class FeedbacksListener : MonoBehaviour
+public class FeedbacksListener : MonoBehaviour
+{
+    void PlayFeedbacks(string feedbackName)
     {
-        void PlayFeedbacks(string feedbackName)
-        {
-            if (feedbackName == name)
-            {
-                GetComponent<MMFeedbacks>()?.PlayFeedbacks();
-            }
-        }
+        if (feedbackName == name) { GetComponent<MMFeedbacks>()?.PlayFeedbacks(); }
     }
+}
 }
