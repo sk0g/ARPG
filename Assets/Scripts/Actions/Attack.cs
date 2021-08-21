@@ -37,7 +37,7 @@ public class Attack : MonoBehaviour
         if (currentWeapon != null && currentWeapon.WeaponAnimations != null)
         {
             // TODO: Define a player component's interface similar to BTree's context
-            GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);
+           GetComponent<PlayerAnimationController>()?.SetAnimations(currentWeapon.WeaponAnimations);
         }
 
         _shouldEmitWeaponTrailEvents = GetComponentInChildren<WeaponTrailController>() != null;
@@ -45,6 +45,7 @@ public class Attack : MonoBehaviour
 
     public void StartAttack()
     {
+        //TODO: set to less expensive or more direct call 
         gameObject.SendMessage("SetTrigger", animationTriggerName);
         if (_shouldEmitWeaponTrailEvents) { gameObject.BroadcastMessage("StartingAttack"); }
 

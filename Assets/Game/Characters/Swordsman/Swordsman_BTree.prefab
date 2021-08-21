@@ -441,6 +441,7 @@ MonoBehaviour:
   - {fileID: 2052925590495801333}
   - {fileID: 2052925590495800917}
   - {fileID: 2052925590495801261}
+  shouldFreeWeaponOnDeath: 1
   ragdollForceStrength: 25
   ragdollForceRadius: 20
   chanceForLimbsToJerkOnRagdoll: 0.3
@@ -2988,10 +2989,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b2b20cb7cb4a0c9c51ab326afe9969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponAnimations: {fileID: 0}
+  weaponAnimations: {fileID: 22100000, guid: 9355c4f24a4a1b84cb1097766314492b, type: 2}
   weaponCollider: {fileID: 223530696130241692}
-  description: 'its awesome '
-  range: 5
 --- !u!1 &2809475288690400107
 GameObject:
   m_ObjectHideFlags: 0

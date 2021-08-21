@@ -35,15 +35,12 @@ public class Weapon : BaseWeapon
 
     public override void LightAttack1()
     {
-        print($"collided with {Name}");
-        print($"collided with {Description}");
-        print($"collided with {Range}");
+        print($"collided with {name}");
     }
 
     public override void HeavyAttack1()
     {
-        print($"collided with {Name}");
-        print($"collided with {Description}");
+        print($"collided with {name}");
     }
 }
 }

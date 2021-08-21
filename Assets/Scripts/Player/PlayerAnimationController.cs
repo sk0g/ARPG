@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Player
@@ -21,7 +22,13 @@ public class PlayerAnimationController : MonoBehaviour
     {
         UpdateAnimatorSpeedValue();
     }
-
+    
+    [UsedImplicitly]
+    void SetTrigger(string triggerName)
+    {
+        _anim.SetTrigger(triggerName);
+    }
+    
     void UpdateAnimatorSpeedValue() =>
         _anim.SetFloat(Speed, Mathf.Clamp01(_cc.velocity.magnitude / maxWalkSpeed));
 

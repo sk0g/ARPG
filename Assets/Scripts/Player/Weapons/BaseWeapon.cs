@@ -26,30 +26,8 @@ public abstract class BaseWeapon : MonoBehaviour, IAttack
         private set => weaponCollider = value;
     }
 
-    protected string Name => gameObject.name;
-
-    // every weapon needs a name 
-    [SerializeField] string description;
-
-    public string Description
-    {
-        get => description;
-        private set => description = value;
-    }
-
-    // how far a weapon can reach, excludes arm length and leg? length
-    [SerializeField] float range;
-
-    protected float Range
-    {
-        get => range;
-        private set => range = value;
-    }
-
     protected BaseWeapon(float r, string d)
     {
-        Range = r;
-        Description = d;
     }
 
     public virtual void Awake()
@@ -61,12 +39,12 @@ public abstract class BaseWeapon : MonoBehaviour, IAttack
 
     public void FetchAnimations()
     {
-        print($"{Name}'s Animations wasn't pre-set, attempting to fetch it");
+        print($"{name}'s Animations wasn't pre-set, attempting to fetch it");
     }
 
     public void FetchCollider()
     {
-        print($"{Name}'s Collider wasn't pre-set, attempting to fetch it");
+        print($"{name}'s Collider wasn't pre-set, attempting to fetch it");
         WeaponCollider = GetComponent<Collider>();
     }
 
