@@ -14,14 +14,12 @@ public class PlayerInputHandler : MonoBehaviour
     IDirectionalMover _directionalMover;
     Dash _dasher;
     Attack _attack1;
-    GameManager _gameManager;
 
     void Awake()
     {
         _directionalMover = GetComponent<IDirectionalMover>();
         _dasher = GetComponent<Dash>();
         _attack1 = GetComponent<Attack>();
-        _gameManager = GameObject.FindWithTag("GameController")?.GetComponent<GameManager>();
     }
 
     Vector3 _currentMovement;
@@ -56,14 +54,14 @@ public class PlayerInputHandler : MonoBehaviour
     [UsedImplicitly]
     public void ReadPause(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) { _gameManager.TogglePause(); }
+        if (ctx.started) { GameManager.Instance.TogglePause(); }
     }
 
     #endregion
 
     void FixedUpdate()
     {
-        if (_gameManager.IsPaused) { return; }
+        if (!GameManager.Instance.PlayerCanAct) { return; }
 
         if (_shouldDash && CanDash) { DoDash(); }
         else if (_shouldAttack && CanAttack) { DoAttack(); }

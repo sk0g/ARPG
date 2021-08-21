@@ -26,28 +26,46 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool IsPaused { get; private set; }
-    UIManager _ui;
+    GameObject _player;
 
-    void Awake()
+    public bool PlayerCanAct => !(_isDead || _isPaused);
+
+    bool _isPaused;
+    bool _isDead;
+
+    void OnEnable()
     {
-        _ui = GetComponent<UIManager>();
+        _instance = this;
     }
 
     public void TogglePause()
     {
-        IsPaused = !IsPaused;
+        if (_isDead) { return; } // can't pause if you're dead, surely
 
-        SetTimescaleForPaused(IsPaused);
-        _ui.SetPauseMenuVisibility(IsPaused);
+        _isPaused = !_isPaused;
+        SetTimescale();
+
+        UIManager.Instance.SetPauseMenuVisibility(_isPaused);
+    }
+
+    public void HandlePlayerDeath()
+    {
+        _isDead = true;
+        SetTimescale();
+
+        UIManager.Instance.SetDeathMenuVisibility(true);
     }
 
     public void RestartGame()
     {
-        SetTimescaleForPaused(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        _isPaused = false;
+        _isDead = false;
+
+        SetTimescale();
     }
 
-    void SetTimescaleForPaused(bool paused) => Time.timeScale = paused ? 0f : 1f;
+    void SetTimescale() => Time.timeScale = PlayerCanAct ? 1f : 0f;
 }
 }

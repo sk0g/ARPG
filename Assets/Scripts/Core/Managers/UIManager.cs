@@ -25,11 +25,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        _instance = this;
+    }
+
     [SerializeField] GameObject pauseUI;
     [SerializeField] GameObject deathUI;
 
     public void SetPauseMenuVisibility(bool visible) => pauseUI.SetActive(visible);
 
-    public void SetDeathMenuVisibility(bool visibility) => deathUI.SetActive(visibility);
+    public void SetDeathMenuVisibility(bool visible) => deathUI.SetActive(visible);
 }
 }

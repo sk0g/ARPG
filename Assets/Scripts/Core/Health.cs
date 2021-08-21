@@ -39,7 +39,11 @@ public class Health : MonoBehaviour, IDamageable
 
         currentHP -= damageAmount; // may be less than 0, for the overkill
 
-        if (currentHP <= 0 && !gameObject.CompareTag("Player")) { Die(); }
+        if (currentHP <= 0)
+        {
+            if (CompareTag("Player")) { GameManager.Instance.HandlePlayerDeath(); }
+            else { Die(); }
+        }
 
         currentHP = Mathf.Max(currentHP, 0); // should now be a valid value
         UpdateHealthBar();
