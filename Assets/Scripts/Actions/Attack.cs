@@ -87,7 +87,7 @@ public class Attack : MonoBehaviour
         // big brain way of detecting whether two game objects have a parent-child relationship 
         // NOTE: big brain way is broken. Enemy root is actually the spawner, but it still works... For now.
         if (other.gameObject.transform.root == gameObject.transform.root) { return; }
-
+        
         if (!WeaponIsDamaging) { return; } // random collision, instead of an attack driven one
 
         var damageable = other.GetComponent<IDamageable>();

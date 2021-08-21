@@ -51,11 +51,16 @@ public class RagdollOnDeath : MonoBehaviour
         _validatedRagdollComponents.ForEach(components =>
         {
             var (rb, c) = components;
-
+            
+            rb.gameObject.tag = "BodyPart";
+            rb.gameObject.AddComponent<DetachableBodyPart>();
+            
             rb.isKinematic = true;
-            rb.detectCollisions = false;
-
-            c.enabled = false;
+            c.isTrigger = true;
+            
+            // leaving these here for now in-case of physics implosion
+            //rb.detectCollisions = false;
+            //c.enabled = false;
         });
     }
 
@@ -83,9 +88,11 @@ public class RagdollOnDeath : MonoBehaviour
         _validatedRagdollComponents.ForEach(components =>
         {
             var (rb, c) = components;
-
-            c.enabled = true;
-
+            
+            // leaving these here for now in-case of physics implosion
+            //c.enabled = true;
+            c.isTrigger = false;
+            
             rb.isKinematic = false;
             rb.detectCollisions = true;
             rb.mass *= 3; // make the ragdolled bodies less floppy
