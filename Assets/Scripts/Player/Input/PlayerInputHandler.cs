@@ -1,6 +1,7 @@
 using Actions;
 using Core.Managers;
 using Interfaces;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,12 +30,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     #region Input Reader
 
+    [UsedImplicitly]
     public void ReadMovement(InputAction.CallbackContext ctx)
     {
         var movementVec2 = ctx.ReadValue<Vector2>();
         _currentMovement = Quaternion.Euler(0, 45, 0) * new Vector3(movementVec2.x, 0, movementVec2.y);
     }
 
+    [UsedImplicitly]
     public void ReadDash(InputAction.CallbackContext ctx)
     {
         if (ctx.started) { _shouldDash = true; }
@@ -42,6 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.canceled && _shouldDash) { _shouldDash = false; }
     }
 
+    [UsedImplicitly]
     public void ReadAttack1(InputAction.CallbackContext ctx)
     {
         if (ctx.started) { _shouldAttack = true; }
@@ -49,6 +53,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.canceled && _shouldAttack) { _shouldAttack = false; }
     }
 
+    [UsedImplicitly]
     public void ReadPause(InputAction.CallbackContext ctx)
     {
         if (ctx.started) { _gameManager.TogglePause(); }
@@ -65,13 +70,13 @@ public class PlayerInputHandler : MonoBehaviour
         else if (CanMove) { DoMove(); }
     }
 
-    bool CanDash => !(_dasher.isDashing || _attack1.IsAttacking);
+    bool CanDash => !_attack1.IsAttacking && _dasher.CanDash;
 
-    bool CanAttack => !_dasher.isDashing && _attack1.CanAttack;
+    bool CanAttack => !_dasher.IsDashing && _attack1.CanAttack;
 
     // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
     // it is important to move even if the movement input is Vector3.zero
-    bool CanMove => !(_dasher.isDashing || _attack1.IsAttacking);
+    bool CanMove => !(_dasher.IsDashing || _attack1.IsAttacking);
 
     void DoDash()
     {
