@@ -51,13 +51,13 @@ public class RagdollOnDeath : MonoBehaviour
         _validatedRagdollComponents.ForEach(components =>
         {
             var (rb, c) = components;
-            
+
             rb.gameObject.tag = "BodyPart";
             rb.gameObject.AddComponent<DetachableBodyPart>();
-            
+
             rb.isKinematic = true;
             c.isTrigger = true;
-            
+
             // leaving these here for now in-case of physics implosion
             //rb.detectCollisions = false;
             //c.enabled = false;
@@ -80,7 +80,11 @@ public class RagdollOnDeath : MonoBehaviour
         GetComponentsInChildren<Weapon>()
             .Where(w => w.gameObject.GetComponent<Rigidbody>() != null)
             .ToList()
-            .ForEach(weapon => { weapon.gameObject.GetComponent<Rigidbody>().isKinematic = false; });
+            .ForEach(weapon =>
+            {
+                weapon.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                weapon.SetColliderState(false);
+            });
     }
 
     void SetRagdolling()
@@ -88,11 +92,11 @@ public class RagdollOnDeath : MonoBehaviour
         _validatedRagdollComponents.ForEach(components =>
         {
             var (rb, c) = components;
-            
+
             // leaving these here for now in-case of physics implosion
             //c.enabled = true;
             c.isTrigger = false;
-            
+
             rb.isKinematic = false;
             rb.detectCollisions = true;
             rb.mass *= 3; // make the ragdolled bodies less floppy

@@ -1,5 +1,6 @@
 #region
 
+using System;
 using Interfaces;
 using UnityEngine;
 
@@ -26,9 +27,14 @@ public abstract class BaseWeapon : MonoBehaviour, IAttack
         private set => weaponCollider = value;
     }
 
-    protected BaseWeapon(float r, string d)
+    // Should this weapon be detecting collisions?
+    public void SetColliderState(Boolean shouldDetectCollisions)
     {
+        weaponCollider.isTrigger = shouldDetectCollisions;
+        weaponCollider.enabled = shouldDetectCollisions;
     }
+
+    protected BaseWeapon(float r, string d) { }
 
     public virtual void Awake()
     {
