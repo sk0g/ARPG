@@ -1,7 +1,8 @@
 using Core.Managers;
 using Interfaces;
+using MoreMountains.Tools;
 using UnityEngine;
-using UnityEngine.Events; // using MoreMountains.Tools;
+using UnityEngine.Events;
 
 namespace Core
 {
@@ -12,16 +13,16 @@ public class Health : MonoBehaviour, IDamageable
     public UnityEvent onHit;
     public UnityEvent<float> onDeath; // pass in the overkill amount for scaling blood and knock-back
 
-    // MMHealthBar _healthBar;
+    MMHealthBar _healthBar;
 
     void Awake()
     {
-        // _healthBar = GetComponentInChildren<MMHealthBar>();
+        _healthBar = GetComponentInChildren<MMHealthBar>();
 
         currentHP = maxHP;
 
         // finally, draw the health bar
-        // UpdateHealthBar();
+        UpdateHealthBar();
     }
 
     public bool CanHeal => currentHP < maxHP;
@@ -29,7 +30,7 @@ public class Health : MonoBehaviour, IDamageable
     public void Heal(float healAmount)
     {
         currentHP = Mathf.Min(maxHP, currentHP + healAmount);
-        // UpdateHealthBar();
+        UpdateHealthBar();
     }
 
     public void TakeDamage(float damageAmount)
@@ -46,7 +47,7 @@ public class Health : MonoBehaviour, IDamageable
         }
 
         currentHP = Mathf.Max(currentHP, 0); // should now be a valid value
-        // UpdateHealthBar();
+        UpdateHealthBar();
     }
 
     void Die()
@@ -60,6 +61,6 @@ public class Health : MonoBehaviour, IDamageable
     // Weird result when character is not dead though
     float OverkillMultiplier => (-currentHP / 10) + 1;
 
-    // void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);
+    void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);
 }
 }

@@ -1,6 +1,7 @@
 using Interfaces;
 using JetBrains.Annotations;
-using UnityEngine; // using MoreMountains.Feedbacks;
+using MoreMountains.Feedbacks;
+using UnityEngine;
 
 namespace Player
 {
@@ -8,7 +9,7 @@ namespace Player
 public class PlayerMover : MonoBehaviour, IPusher, IDirectionalMover
 {
     [SerializeField] float movementSpeed = 5f;
-    // [SerializeField] MMFeedbacks stepFeedback;
+    [SerializeField] MMFeedbacks stepFeedback;
 
     CharacterController _characterController;
     float _currentMovementMagnitude;
@@ -43,9 +44,9 @@ public class PlayerMover : MonoBehaviour, IPusher, IDirectionalMover
 
     void Step()
     {
-        // if (stepFeedback == null || _currentMovementMagnitude < .5f) { return; }
+        if (stepFeedback == null || _currentMovementMagnitude < .5f) { return; }
 
-        // stepFeedback.PlayFeedbacks(transform.position, _currentMovementMagnitude);
+        stepFeedback.PlayFeedbacks(transform.position, _currentMovementMagnitude);
     }
 }
 }

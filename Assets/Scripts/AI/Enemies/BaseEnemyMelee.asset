@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aeb775a6e137c464588fa9535b06547c, type: 3}
-  m_Name: Attack1
+  m_Name: AttackAction
   m_EditorClassIdentifier: 
   state: 0
   started: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
     moveToPosition: {x: 0, y: 0, z: 0}
   description: 
   drawGizmos: 0
+  attackAnimationName: Attack1
 --- !u!114 &7341957445864978280
 MonoBehaviour:
   m_ObjectHideFlags: 0

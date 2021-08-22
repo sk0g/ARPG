@@ -1,29 +1,26 @@
-// using MoreMountains.Feedbacks;
-
+using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace Player.Feedbacks
 {
-// [RequireComponent(typeof(MMFeedbacks))]
+[RequireComponent(typeof(MMFeedbacks))]
 public class FeedbacksListener : MonoBehaviour
 {
-    // MMFeedbacks _feedbacks;
+    MMFeedbacks _feedbacks;
 
     void Awake()
     {
-        // _feedbacks = GetComponent<MMFeedbacks>();
-        // _feedbacks.Initialization();
+        _feedbacks = GetComponent<MMFeedbacks>();
 
-        // print($"{name} has feedback count {_feedbacks.Feedbacks.Count}");
+        print($"{name} has feedback count {_feedbacks.Feedbacks.Count}");
     }
 
     void PlayFeedbacks(string feedbackName)
     {
-        // if (feedbackName == name && _feedbacks)
-        {
-            // _feedbacks.PlayFeedbacks();
-            print($"playing feedback in {name} with arg {feedbackName}");
-        }
+        if (feedbackName != name || !_feedbacks) return;
+
+        _feedbacks.PlayFeedbacks();
+        print($"playing feedback in {name} with arg {feedbackName}");
     }
 }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using Interfaces;
-using UnityEngine; // using MoreMountains.Feedbacks;
+using MoreMountains.Feedbacks;
+using UnityEngine;
 
 namespace Actions
 {
@@ -19,7 +20,8 @@ public class Dash : MonoBehaviour
     float speed = 20f;
 
     [SerializeField] [Tooltip("Feedback to play on dash. Fine to leave unfilled")]
-    // MMFeedbacks feedback;
+    MMFeedbacks feedback;
+
     IPusher _pusher;
 
     public bool IsDashing { get; private set; }
@@ -44,7 +46,7 @@ public class Dash : MonoBehaviour
         IsDashing = true;
 
         // start dash feedback, then charge up the dash
-        // if (feedback) { feedback.PlayFeedbacks(); }
+        if (feedback) { feedback.PlayFeedbacks(); }
 
         yield return new WaitForSeconds(chargeTime);
 
