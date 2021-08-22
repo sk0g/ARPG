@@ -11,8 +11,6 @@ public class FeedbacksListener : MonoBehaviour
     void Awake()
     {
         _feedbacks = GetComponent<MMFeedbacks>();
-
-        print($"{name} has feedback count {_feedbacks.Feedbacks.Count}");
     }
 
     void PlayFeedbacks(string feedbackName)
@@ -20,7 +18,6 @@ public class FeedbacksListener : MonoBehaviour
         if (feedbackName != name || !_feedbacks) return;
 
         _feedbacks.PlayFeedbacks();
-        print($"playing feedback in {name} with arg {feedbackName}");
     }
 }
 }
