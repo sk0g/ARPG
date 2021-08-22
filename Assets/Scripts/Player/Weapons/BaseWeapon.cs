@@ -41,6 +41,8 @@ public abstract class BaseWeapon : MonoBehaviour, IAttack
         if (WeaponCollider == null) { FetchCollider(); }
 
         if (WeaponAnimations == null) { FetchAnimations(); }
+
+        SetColliderState(false);
     }
 
     public void FetchAnimations()

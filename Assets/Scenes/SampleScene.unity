@@ -3408,7 +3408,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7374518, y: 1}
+    m_SensorSize: {x: 1.2326204, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -4702,7 +4702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plane: {fileID: 1723353640}
   swordsman: {fileID: 2052925590495800915, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
-  swordsmenSpawnFrequency: 20
+  swordsmenSpawnFrequency: 10
   initialSwordsmenToSpawn: 1
   unitSpawnRadius: 20
 --- !u!1 &2035111233
