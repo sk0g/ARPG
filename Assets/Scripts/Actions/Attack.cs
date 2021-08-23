@@ -108,7 +108,7 @@ public class Attack : MonoBehaviour
         // between .8 and 1 is considered a crit
         var hitIsCrit = dotProduct >= .8f;
 
-        if (hitIsCrit) { BroadcastMessage("PlayFeedbacks", "CritFeedback"); }
+        if (hitIsCrit) { BroadcastMessage("PlayFeedbackNamed", "CritFeedback"); }
 
         return hitIsCrit;
     }

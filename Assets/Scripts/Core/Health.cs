@@ -36,7 +36,7 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(float damageAmount)
     {
         onHit.Invoke();
-        BroadcastMessage("PlayFeedbacks", "GetHitFeedback", SendMessageOptions.DontRequireReceiver);
+        BroadcastMessage("PlayFeedbackNamed", "GetHitFeedback", SendMessageOptions.DontRequireReceiver);
 
         currentHP -= damageAmount; // may be less than 0, for the overkill
 

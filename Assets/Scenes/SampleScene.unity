@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 1480.2295, g: 1833.8652, b: 2428.0332, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1590,7 +1590,7 @@ MonoBehaviour:
   FeedbacksIntensity: 1
   Events:
     TriggerMMFeedbacksEvents: 0
-    TriggerUnityEvents: 1
+    TriggerUnityEvents: 0
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -2777,7 +2777,7 @@ MonoBehaviour:
   FeedbacksIntensity: 1
   Events:
     TriggerMMFeedbacksEvents: 0
-    TriggerUnityEvents: 1
+    TriggerUnityEvents: 0
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -2908,7 +2908,7 @@ MonoBehaviour:
   PropertyName: _Tint
   FlickerDuration: 1
   FlickerOctave: 1
-  FlickerColor: {r: 0, g: 0.7743149, b: 1, a: 1}
+  FlickerColor: {r: 0, g: 2.3215687, b: 2.9960785, a: 1}
   MaterialIndexes: 
 --- !u!114 &915930369
 MonoBehaviour:
@@ -2950,7 +2950,7 @@ MonoBehaviour:
   PropertyName: _Tint
   FlickerDuration: 1
   FlickerOctave: 1
-  FlickerColor: {r: 0, g: 0.7743149, b: 1, a: 1}
+  FlickerColor: {r: 0, g: 2.3215687, b: 2.9960785, a: 1}
   MaterialIndexes: 
 --- !u!114 &915930370
 MonoBehaviour:
@@ -2992,7 +2992,7 @@ MonoBehaviour:
   PropertyName: _Tint
   FlickerDuration: 1
   FlickerOctave: 1
-  FlickerColor: {r: 0, g: 0.7743149, b: 1, a: 1}
+  FlickerColor: {r: 0, g: 2.3215687, b: 2.9960785, a: 1}
   MaterialIndexes: 
 --- !u!114 &915930371
 MonoBehaviour:
@@ -3680,7 +3680,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.2309747, y: 1}
+    m_SensorSize: {x: 2.3282442, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -3822,7 +3822,7 @@ MonoBehaviour:
   FeedbacksIntensity: 1
   Events:
     TriggerMMFeedbacksEvents: 0
-    TriggerUnityEvents: 1
+    TriggerUnityEvents: 0
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -3914,7 +3914,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  Velocity: {x: 0, y: 0, z: 0}
+  Velocity: {x: 0.2, y: 0.2, z: 0.2}
   ClearImpulseOnStop: 0
 --- !u!4 &1396287005 stripped
 Transform:
@@ -4836,7 +4836,7 @@ MonoBehaviour:
   FeedbacksIntensity: 1
   Events:
     TriggerMMFeedbacksEvents: 0
-    TriggerUnityEvents: 1
+    TriggerUnityEvents: 0
     OnPlay:
       m_PersistentCalls:
         m_Calls: []
@@ -5322,6 +5322,10 @@ PrefabInstance:
     - target: {fileID: 1142246959632906345, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: m_Name
       value: Chunks
+      objectReference: {fileID: 0}
+    - target: {fileID: 1142246959632906345, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}

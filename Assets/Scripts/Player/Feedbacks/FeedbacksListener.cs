@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
@@ -13,7 +14,8 @@ public class FeedbacksListener : MonoBehaviour
         _feedbacks = GetComponent<MMFeedbacks>();
     }
 
-    void PlayFeedbacks(string feedbackName)
+    [UsedImplicitly]
+    void PlayFeedbackNamed(string feedbackName)
     {
         if (feedbackName != name || !_feedbacks) return;
 

@@ -51,7 +51,7 @@ public class MMFeedbackFlicker : MMFeedback
     public float FlickerOctave = 0.04f;
 
     /// the color we should flicker the sprite to 
-    [Tooltip("the color we should flicker the sprite to")]
+    [Tooltip("the color we should flicker the sprite to")] [ColorUsage(true, true)]
     public Color FlickerColor = new Color32(255, 20, 20, 255);
 
     /// the list of material indexes we want to flicker on the target renderer. If left empty, will only target the material at index 0 
