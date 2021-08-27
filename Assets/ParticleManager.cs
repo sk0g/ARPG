@@ -1,7 +1,8 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
+[Serializable]
 public enum Emitter
 {
     CHUNKS,
@@ -11,25 +12,10 @@ public enum Emitter
 [Serializable]
 public struct EmitterParameters
 {
-    public Emitter EmitterType;
     public Vector3 Scale;
-    public ParticleSystem Emitter;
+    [SerializeField] public ParticleSystem Emitter;
 
-    public EmitterParameters(Emitter emiterType, Vector3 scale, ParticleSystem emitter)
-    {
-        EmitterType = emiterType;
-        Scale = scale;
-        Emitter = emitter;
-    }
-}
-
-[Serializable]
-public struct EmitterParameters2
-{
-    public Vector3 Scale;
-    public ParticleSystem Emitter;
-
-    public EmitterParameters2(Emitter emiterType, Vector3 scale, ParticleSystem emitter)
+    public EmitterParameters(Vector3 scale, ParticleSystem emitter)
     {
         Scale = scale;
         Emitter = emitter;
@@ -37,18 +23,10 @@ public struct EmitterParameters2
 }
 
 [Serializable]
-public class EmitterParameters3
-{
-    public Emitter em;
-    public EmitterParameters2 pm;
-}
-
 public class ParticleManager : MonoBehaviour
 {
     static ParticleManager instance;
-    [SerializeField] List<EmitterParameters> ParticleEmitters = new();
-
-    [SerializeField] EmitterParameters3 emitters = new();
+    public ParticleSystem blood, chunks;
 
     void Awake()
     {
@@ -63,27 +41,31 @@ public class ParticleManager : MonoBehaviour
 
     void Emit(Emitter emitType)
     {
-        // var selectedWithLinq = ParticleEmitters.Where(x => x.EmitterType == emitType)
-        //                                        .Select(x => (emitType?) x.EmitterType)
-        //                                        .FirstOrDefault();
+        StartCoroutine(DoEmit(emitType));
+    }
 
-        ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
-
+    IEnumerator DoEmit(Emitter emitType)
+    {
         if (emitType == Emitter.BLOOD)
         {
-            emitParams.position = GameObject.Find("Player").transform.position;
-            emitParams.applyShapeToPosition = true;
-            emitParams.startSize = 0.05f;
+            ParticleSystem.EmitParams emitParams = new()
+            {
+                position = GameObject.Find("Player").transform.position,
+                applyShapeToPosition = true,
+                startSize = 0.05f
+            };
 
-            ParticleEmitters[0].Emitter.Emit(emitParams, 1);
+            blood.Emit(emitParams, 1);
         }
         else if (emitType == Emitter.CHUNKS)
         {
-            emitParams.position = GameObject.Find("Player").transform.position;
-            emitParams.applyShapeToPosition = true;
-
-            ParticleEmitters[1].Emitter.Emit(emitParams, 1);
+            ParticleSystem.EmitParams emitParams = new()
+            {
+                position = GameObject.Find("Player").transform.position, applyShapeToPosition = true
+            };
+            chunks.Emit(emitParams, 1);
         }
-        else { }
+
+        yield return null;
     }
 }

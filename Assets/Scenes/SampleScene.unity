@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1480.2295, g: 1833.8652, b: 2428.0332, a: 1}
+  m_IndirectSpecularColor: {r: 1250.0902, g: 1597.8608, b: 2177.6772, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1907,7 +1907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498223231}
   m_LocalRotation: {x: 0.39044836, y: 0.346829, z: -0.16172901, w: 0.83731925}
-  m_LocalPosition: {x: -5.454234, y: 10.1925335, z: -5.454233}
+  m_LocalPosition: {x: -5.454234, y: 10.1925335, z: -5.4542336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3689,7 +3689,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.4696357, y: 1}
+    m_SensorSize: {x: 1.2271605, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -4117,18 +4117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e0a0d89db65483489da3659c7210a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParticleEmitters:
-  - EmitterType: 1
-    Scale: {x: 0, y: 0, z: 0}
-    Emitter: {fileID: 2114306708}
-  - EmitterType: 0
-    Scale: {x: 0, y: 0, z: 0}
-    Emitter: {fileID: 302434016944690096}
-  emitters:
-    em: 1
-    pm:
-      Scale: {x: 3, y: 0, z: 0}
-      Emitter: {fileID: 0}
+  blood: {fileID: 302434016944690096}
 --- !u!1 &1518163832
 GameObject:
   m_ObjectHideFlags: 19
@@ -5334,7 +5323,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1142246959632906345, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.size3D
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 1000000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: CollisionModule.m_Bounce.minScalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: CollisionModule.m_Bounce.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: InitialModule.startSpeed.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
