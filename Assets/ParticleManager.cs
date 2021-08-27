@@ -1,71 +1,52 @@
 using System;
-using System.Collections;
 using UnityEngine;
-
-[Serializable]
-public enum Emitter
-{
-    CHUNKS,
-    BLOOD,
-}
-
-[Serializable]
-public struct EmitterParameters
-{
-    public Vector3 Scale;
-    [SerializeField] public ParticleSystem Emitter;
-
-    public EmitterParameters(Vector3 scale, ParticleSystem emitter)
-    {
-        Scale = scale;
-        Emitter = emitter;
-    }
-}
 
 [Serializable]
 public class ParticleManager : MonoBehaviour
 {
-    static ParticleManager instance;
-    public ParticleSystem blood, chunks;
+    public static ParticleManager Instance;
+    public Particle blood, chunks;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
-    void Update()
+#if UNITY_EDITOR
+    void FixedUpdate()
     {
-        Emit(Emitter.BLOOD);
-        Emit(Emitter.CHUNKS);
+        blood.MaybeEmit();
+        chunks.MaybeEmit();
     }
+#endif
 
-    void Emit(Emitter emitType)
+    [Serializable]
+    public class Particle
     {
-        StartCoroutine(DoEmit(emitType));
-    }
+        [SerializeField] ParticleSystem particlesToSpawn;
 
-    IEnumerator DoEmit(Emitter emitType)
-    {
-        if (emitType == Emitter.BLOOD)
+        [SerializeField] float defaultScale = 1f;
+
+#if UNITY_EDITOR
+        [Header("DEBUG ONLY")] [SerializeField]
+        bool testEmit;
+
+        [SerializeField] Vector3 testEmitLocation;
+
+        public void MaybeEmit()
         {
-            ParticleSystem.EmitParams emitParams = new()
-            {
-                position = GameObject.Find("Player").transform.position,
-                applyShapeToPosition = true,
-                startSize = 0.05f
-            };
-
-            blood.Emit(emitParams, 1);
+            if (testEmit) { Emit(testEmitLocation); }
         }
-        else if (emitType == Emitter.CHUNKS)
+#endif
+
+        public void Emit(Vector3 atPosition, float scaleSizeBy = 1f, int instancesToSpawn = 1, bool applyShape = true)
         {
-            ParticleSystem.EmitParams emitParams = new()
+            particlesToSpawn.Emit(new ParticleSystem.EmitParams
             {
-                position = GameObject.Find("Player").transform.position, applyShapeToPosition = true
-            };
-            chunks.Emit(emitParams, 1);
+                position = atPosition,
+                applyShapeToPosition = applyShape,
+                startSize = defaultScale * scaleSizeBy
+            }, instancesToSpawn);
         }
-
-        yield return null;
     }
 }

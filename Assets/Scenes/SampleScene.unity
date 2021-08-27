@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1250.0902, g: 1597.8608, b: 2177.6772, a: 1}
+  m_IndirectSpecularColor: {r: 1480.2295, g: 1833.8652, b: 2428.0332, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1907,7 +1907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498223231}
   m_LocalRotation: {x: 0.39044836, y: 0.346829, z: -0.16172901, w: 0.83731925}
-  m_LocalPosition: {x: -5.454234, y: 10.1925335, z: -5.4542336}
+  m_LocalPosition: {x: -5.454234, y: 10.1925335, z: -5.454233}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3689,7 +3689,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.2271605, y: 1}
+    m_SensorSize: {x: 1.7020979, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -4117,7 +4117,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e0a0d89db65483489da3659c7210a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 302434016944690096}
+  blood:
+    particlesToSpawn: {fileID: 2114306708}
+    defaultScale: 1
+    testEmit: 0
+    testEmitLocation: {x: 0, y: 0, z: 0}
+  chunks:
+    particlesToSpawn: {fileID: 302434016944690096}
+    defaultScale: 1
+    testEmit: 0
+    testEmitLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &1518163832
 GameObject:
   m_ObjectHideFlags: 19
@@ -5278,6 +5287,18 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 714632289808590686, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 714632289808590686, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 714632289808590686, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 714632289808590686, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8678251
       objectReference: {fileID: 0}
@@ -5343,7 +5364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.004
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: CollisionModule.m_Bounce.scalar
@@ -5355,7 +5376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 0.002
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6631975760660515337, guid: fa5dca66b038945ad86ce3bdbb81f9e3, type: 3}
       propertyPath: CollisionModule.m_Bounce.minScalar
