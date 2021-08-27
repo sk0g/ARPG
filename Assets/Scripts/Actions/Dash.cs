@@ -22,6 +22,8 @@ public class Dash : MonoBehaviour
     [SerializeField] [Tooltip("Feedback to play on dash. Fine to leave unfilled")]
     MMFeedbacks feedback;
 
+    bool _inMovePhase;
+
     IPusher _pusher;
 
     public bool IsDashing { get; private set; }
@@ -32,8 +34,6 @@ public class Dash : MonoBehaviour
     {
         _pusher = GetComponent<IPusher>();
     }
-
-    bool _inMovePhase;
 
     void FixedUpdate()
     {
@@ -46,6 +46,7 @@ public class Dash : MonoBehaviour
         IsDashing = true;
 
         // start dash feedback, then charge up the dash
+        SendMessage("SetTrigger", "Dash");
         if (feedback) { feedback.PlayFeedbacks(); }
 
         yield return new WaitForSeconds(chargeTime);
