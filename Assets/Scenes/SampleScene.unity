@@ -5112,6 +5112,14 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1779561137}
+    - target: {fileID: 710390083892822917, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822917, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: FollowRotation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 710390083892822968, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5160,6 +5168,114 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health Bar
       objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: HealthBarOffset.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BorderColor.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BorderColor.key0.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BorderColor.key1.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key0.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key0.b
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key0.g
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key0.r
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key1.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key1.b
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key1.g
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: DelayedColor.key1.r
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BackgroundColor.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BackgroundColor.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BackgroundColor.key0.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BackgroundColor.key1.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.ctime1
+      value: 33731
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key0.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key1.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key1.r
+      value: 0.38731253
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key2.b
+      value: 0.00002193451
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: InitialRotationAngles.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: BackgroundColor.m_NumColorKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 710390083892822971, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
+      propertyPath: ForegroundColor.m_NumColorKeys
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c315d3a89d6a478799a9c929e9b55c4, type: 3}
 --- !u!1001 &7698225372107154590
@@ -5169,6 +5285,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1779561137}
     m_Modifications:
+    - target: {fileID: 1943324019, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Size.y
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943324019, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Size.z
+      value: 2.29
+      objectReference: {fileID: 0}
     - target: {fileID: 7698225371319173763, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_RootOrder
       value: 0

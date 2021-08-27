@@ -20,13 +20,17 @@ public class PlayerInputHandler : MonoBehaviour
     bool _shouldAttack, _shouldAttack2;
     bool _shouldDash;
 
-    bool CanDash => !_attack1.IsAttacking && _dasher.CanDash;
+    bool AnyAttackIsAttacking => _attack1.IsAttacking || _attack2.IsAttacking;
 
-    bool CanAttack => !_dasher.IsDashing && _attack1.CanAttack;
+    bool CanDash => !AnyAttackIsAttacking && _dasher.CanDash;
+
+    bool CanAttack1 => !_dasher.IsDashing && _attack1.CanAttack;
+
+    bool CanAttack2 => !_dasher.IsDashing && _attack2.CanAttack;
 
     // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
     // it is important to move even if the movement input is Vector3.zero
-    bool CanMove => !(_dasher.IsDashing || _attack1.IsAttacking);
+    bool CanMove => !(_dasher.IsDashing || AnyAttackIsAttacking);
 
     void Awake()
     {
@@ -41,8 +45,8 @@ public class PlayerInputHandler : MonoBehaviour
         if (!GameManager.Instance.PlayerCanAct) { return; }
 
         if (_shouldDash && CanDash) { DoDash(); }
-        else if (_shouldAttack && CanAttack) { DoAttack(); }
-        else if (_shouldAttack2 && CanAttack) { DoAttack2(); }
+        else if (_shouldAttack && CanAttack1) { DoAttack(); }
+        else if (_shouldAttack2 && CanAttack2) { DoAttack2(); }
         else if (CanMove) { DoMove(); }
     }
 

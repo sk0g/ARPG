@@ -789,7 +789,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4257753
+      - time: 0.43979397
         functionName: EndAttackSwing
         data: 
         objectReferenceParameter: {instanceID: 0}
