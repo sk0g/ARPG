@@ -2300,9 +2300,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1200661383941978, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1622633989260968, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1622633989260968, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1962516439210982, guid: 3c657dedc43d33a4987fbf09e6363067, type: 3}
       propertyPath: m_Name
@@ -5009,7 +5017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1986382363
 Transform:
   m_ObjectHideFlags: 0
@@ -5488,8 +5496,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_MotionVectors
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.078431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740989658, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 0.11764706
       objectReference: {fileID: 0}
     - target: {fileID: 1943324019, guid: b46f0fa6f8c2149969d72a069aa1d4f2, type: 3}
       propertyPath: m_IsTrigger
