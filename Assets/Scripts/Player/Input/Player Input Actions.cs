@@ -60,6 +60,14 @@ namespace Player.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ed5fd3e-c53c-4220-9c8c-7946f432c03b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -205,6 +213,39 @@ namespace Player.Input
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""298ac230-6837-47fb-ad00-4610a4bf362b"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7545dbc8-d58d-47a5-be4a-dd6c27199a25"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""104c0545-0713-4021-9e30-6331fff0cdb8"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -217,6 +258,7 @@ namespace Player.Input
             m_Default_Dash = m_Default.FindAction("Dash", throwIfNotFound: true);
             m_Default_Attack1 = m_Default.FindAction("Attack 1", throwIfNotFound: true);
             m_Default_Pause = m_Default.FindAction("Pause", throwIfNotFound: true);
+            m_Default_Attack2 = m_Default.FindAction("Attack 2", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -280,6 +322,7 @@ namespace Player.Input
         private readonly InputAction m_Default_Dash;
         private readonly InputAction m_Default_Attack1;
         private readonly InputAction m_Default_Pause;
+        private readonly InputAction m_Default_Attack2;
         public struct DefaultActions
         {
             private @PlayerInputActions m_Wrapper;
@@ -288,6 +331,7 @@ namespace Player.Input
             public InputAction @Dash => m_Wrapper.m_Default_Dash;
             public InputAction @Attack1 => m_Wrapper.m_Default_Attack1;
             public InputAction @Pause => m_Wrapper.m_Default_Pause;
+            public InputAction @Attack2 => m_Wrapper.m_Default_Attack2;
             public InputActionMap Get() { return m_Wrapper.m_Default; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -309,6 +353,9 @@ namespace Player.Input
                     @Pause.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnPause;
                     @Pause.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnPause;
                     @Pause.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnPause;
+                    @Attack2.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack2;
+                    @Attack2.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack2;
+                    @Attack2.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack2;
                 }
                 m_Wrapper.m_DefaultActionsCallbackInterface = instance;
                 if (instance != null)
@@ -325,6 +372,9 @@ namespace Player.Input
                     @Pause.started += instance.OnPause;
                     @Pause.performed += instance.OnPause;
                     @Pause.canceled += instance.OnPause;
+                    @Attack2.started += instance.OnAttack2;
+                    @Attack2.performed += instance.OnAttack2;
+                    @Attack2.canceled += instance.OnAttack2;
                 }
             }
         }
@@ -335,6 +385,7 @@ namespace Player.Input
             void OnDash(InputAction.CallbackContext context);
             void OnAttack1(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
+            void OnAttack2(InputAction.CallbackContext context);
         }
     }
 }
