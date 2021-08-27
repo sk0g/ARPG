@@ -1,3 +1,4 @@
+using System.Linq;
 using Actions;
 using Core.Managers;
 using Interfaces;
@@ -10,21 +11,66 @@ namespace Player.Input
 [RequireComponent(typeof(Dash), typeof(IDirectionalMover))]
 public class PlayerInputHandler : MonoBehaviour
 {
-    PlayerInputActions _inputActions;
-    IDirectionalMover _directionalMover;
+    Attack _attack1, _attack2;
+
+    Vector3 _currentMovement;
     Dash _dasher;
-    Attack _attack1;
+    IDirectionalMover _directionalMover;
+    PlayerInputActions _inputActions;
+    bool _shouldAttack, _shouldAttack2;
+    bool _shouldDash;
+
+    bool CanDash => !_attack1.IsAttacking && _dasher.CanDash;
+
+    bool CanAttack => !_dasher.IsDashing && _attack1.CanAttack;
+
+    // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
+    // it is important to move even if the movement input is Vector3.zero
+    bool CanMove => !(_dasher.IsDashing || _attack1.IsAttacking);
 
     void Awake()
     {
         _directionalMover = GetComponent<IDirectionalMover>();
         _dasher = GetComponent<Dash>();
-        _attack1 = GetComponent<Attack>();
+        _attack1 = GetComponents<Attack>().First(a => a.AnimationName == "Attack1");
+        _attack2 = GetComponents<Attack>().First(a => a.AnimationName == "Attack2");
     }
 
-    Vector3 _currentMovement;
-    bool _shouldDash;
-    bool _shouldAttack;
+    void FixedUpdate()
+    {
+        if (!GameManager.Instance.PlayerCanAct) { return; }
+
+        if (_shouldDash && CanDash) { DoDash(); }
+        else if (_shouldAttack && CanAttack) { DoAttack(); }
+        else if (_shouldAttack2 && CanAttack) { DoAttack2(); }
+        else if (CanMove) { DoMove(); }
+    }
+
+    void DoDash()
+    {
+        if (_currentMovement != Vector3.zero) { _directionalMover.LookAtDirection(_currentMovement); }
+
+        StartCoroutine(_dasher.StartDash());
+        _shouldDash = false;
+    }
+
+    void DoAttack()
+    {
+        if (_currentMovement != Vector3.zero) { _directionalMover.LookAtDirection(_currentMovement); }
+
+        _attack1.StartAttack();
+        _shouldAttack = false;
+    }
+
+    void DoAttack2()
+    {
+        if (_currentMovement != Vector3.zero) { _directionalMover.LookAtDirection(_currentMovement); }
+
+        _attack2.StartAttack();
+        _shouldAttack2 = false;
+    }
+
+    void DoMove() => _directionalMover.MoveInDirection(_currentMovement);
 
     #region Input Reader
 
@@ -52,46 +98,19 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     [UsedImplicitly]
+    public void ReadAttack2(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) { _shouldAttack2 = true; }
+
+        if (ctx.canceled && _shouldAttack2) { _shouldAttack2 = false; }
+    }
+
+    [UsedImplicitly]
     public void ReadPause(InputAction.CallbackContext ctx)
     {
         if (ctx.started) { GameManager.Instance.TogglePause(); }
     }
 
     #endregion
-
-    void FixedUpdate()
-    {
-        if (!GameManager.Instance.PlayerCanAct) { return; }
-
-        if (_shouldDash && CanDash) { DoDash(); }
-        else if (_shouldAttack && CanAttack) { DoAttack(); }
-        else if (CanMove) { DoMove(); }
-    }
-
-    bool CanDash => !_attack1.IsAttacking && _dasher.CanDash;
-
-    bool CanAttack => !_dasher.IsDashing && _attack1.CanAttack;
-
-    // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
-    // it is important to move even if the movement input is Vector3.zero
-    bool CanMove => !(_dasher.IsDashing || _attack1.IsAttacking);
-
-    void DoDash()
-    {
-        if (_currentMovement != Vector3.zero) { _directionalMover.LookAtDirection(_currentMovement); }
-
-        StartCoroutine(_dasher.StartDash());
-        _shouldDash = false;
-    }
-
-    void DoAttack()
-    {
-        if (_currentMovement != Vector3.zero) { _directionalMover.LookAtDirection(_currentMovement); }
-
-        _attack1.StartAttack();
-        _shouldAttack = false;
-    }
-
-    void DoMove() => _directionalMover.MoveInDirection(_currentMovement);
 }
 }

@@ -15,11 +15,13 @@ public class Attack : MonoBehaviour
     [SerializeField] string animationTriggerName = "Attack1";
     [SerializeField] Weapon currentWeapon;
     [SerializeField] bool canCrit;
-
-    bool _shouldEmitWeaponTrailEvents; // assigned to in Awake
+    bool _canAttackAgain = true; // not attacking, and has served the cooldown time?
 
     bool _isAttacking; // currently involved in an animation event?
-    bool _canAttackAgain = true; // not attacking, and has served the cooldown time?
+
+    List<GameObject> _objectsDamagedThisAttack = new();
+
+    bool _shouldEmitWeaponTrailEvents; // assigned to in Awake
 
     public string AnimationName => animationTriggerName;
 
@@ -29,19 +31,21 @@ public class Attack : MonoBehaviour
 
     bool WeaponIsDamaging => currentWeapon.WeaponCollider.isTrigger;
 
-    List<GameObject> _objectsDamagedThisAttack = new();
-
     void Awake()
     {
         // not bare-fist!
         if (currentWeapon != null && currentWeapon.WeaponAnimations != null)
         {
             // TODO: Define a player component's interface similar to BTree's context
-            GetComponent<PlayerAnimationController>()?.SetAnimations(currentWeapon.WeaponAnimations);
+            GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);
         }
 
         _shouldEmitWeaponTrailEvents = GetComponentInChildren<WeaponTrailController>() != null;
     }
+
+    public void OnCollisionEnter(Collision other) => MaybeDamage(other.collider);
+
+    public void OnTriggerEnter(Collider other) => MaybeDamage(other);
 
     public void StartAttack()
     {
@@ -78,17 +82,13 @@ public class Attack : MonoBehaviour
         _canAttackAgain = true;
     }
 
-    public void OnTriggerEnter(Collider other) => MaybeDamage(other);
-
-    public void OnCollisionEnter(Collision other) => MaybeDamage(other.collider);
-
     void MaybeDamage(Collider other)
     {
         // big brain way of detecting whether two game objects have a parent-child relationship 
         // NOTE: big brain way is broken. Enemy root is actually the spawner, but it still works... For now.
         if (other.gameObject.transform.root == gameObject.transform.root) { return; }
 
-        if (!WeaponIsDamaging) { return; } // random collision, instead of an attack driven one
+        if (!(WeaponIsDamaging && IsAttacking)) { return; } // random collision, instead of an attack driven one
 
         var damageable = other.GetComponent<IDamageable>();
         if (damageable == null || _objectsDamagedThisAttack.Contains(other.gameObject)) { return; }

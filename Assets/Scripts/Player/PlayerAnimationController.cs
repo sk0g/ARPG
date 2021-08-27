@@ -5,12 +5,11 @@ namespace Player
 {
 public class PlayerAnimationController : MonoBehaviour
 {
+    static readonly int Speed = Animator.StringToHash("Speed");
     [SerializeField] float maxWalkSpeed = 5f;
-
-    CharacterController _cc;
     Animator _anim;
 
-    static readonly int Speed = Animator.StringToHash("Speed");
+    CharacterController _cc;
 
     void Awake()
     {
@@ -22,13 +21,13 @@ public class PlayerAnimationController : MonoBehaviour
     {
         UpdateAnimatorSpeedValue();
     }
-    
+
     [UsedImplicitly]
     void SetTrigger(string triggerName)
     {
         _anim.SetTrigger(triggerName);
     }
-    
+
     void UpdateAnimatorSpeedValue() =>
         _anim.SetFloat(Speed, Mathf.Clamp01(_cc.velocity.magnitude / maxWalkSpeed));
 
@@ -38,9 +37,9 @@ public class PlayerAnimationController : MonoBehaviour
      */
     public void SetAnimations(AnimatorOverrideController overrideController)
     {
-        if (overrideController == null)
+        if (overrideController == null || _anim == null)
         {
-            Debug.LogError("Animation Override is null");
+            Debug.LogError("Animation Override is null!");
             return;
         }
 
