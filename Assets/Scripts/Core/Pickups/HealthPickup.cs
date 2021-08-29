@@ -12,7 +12,7 @@ public class HealthPickup : MonoBehaviour
         if (!other.CompareTag("Player")) { return; } // health pickups are for the player :) 
 
         var health = other.GetComponent<Health>();
-        if (health == null || !health.CanHeal) return;
+        if (health == null || !health.canHeal) return;
 
         health.Heal(healAmount);
         Destroy(gameObject);

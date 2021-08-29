@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace Core
 {
+[RequireComponent(typeof(CharacterStatus))]
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] float maxHP = 100f;
@@ -14,9 +15,11 @@ public class Health : MonoBehaviour, IDamageable
     public UnityEvent<float> onDeath; // pass in the overkill amount for scaling blood and knock-back
 
     MMHealthBar _healthBar;
+    CharacterStatus _status;
 
     void Awake()
     {
+        _status = GetComponent<CharacterStatus>();
         _healthBar = GetComponentInChildren<MMHealthBar>();
 
         currentHP = maxHP;
@@ -25,7 +28,7 @@ public class Health : MonoBehaviour, IDamageable
         UpdateHealthBar();
     }
 
-    public bool CanHeal => currentHP < maxHP;
+    public bool canHeal => currentHP < maxHP;
 
     public void Heal(float healAmount)
     {
@@ -35,6 +38,8 @@ public class Health : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damageAmount)
     {
+        if (_status.invulnerable.active) { return; }
+
         onHit.Invoke();
         BroadcastMessage("PlayFeedbackNamed", "GetHitFeedback", SendMessageOptions.DontRequireReceiver);
 
@@ -54,12 +59,12 @@ public class Health : MonoBehaviour, IDamageable
     {
         PickupManager.Instance.SpawnBloodPickup(transform.position);
 
-        onDeath.Invoke(OverkillMultiplier);
+        onDeath.Invoke(overkillMultiplier);
     }
 
     // Below returns (hp => result) -20 => 3, -15 => 2.5, -5 => 1.5, 0 => 1, etc
     // Weird result when character is not dead though
-    float OverkillMultiplier => (-currentHP / 10) + 1;
+    float overkillMultiplier => (-currentHP / 10) + 1;
 
     void UpdateHealthBar() => _healthBar.UpdateBar(currentHP, 0f, maxHP, true);
 }

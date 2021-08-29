@@ -1,10 +1,12 @@
 using System.Collections;
+using Core;
 using Interfaces;
 using MoreMountains.Feedbacks;
 using UnityEngine;
 
 namespace Actions
 {
+[RequireComponent(typeof(CharacterStatus))]
 public class Dash : MonoBehaviour
 {
     [SerializeField] [Tooltip("How long the charge up phase of the dash lasts for, before the movement starts")]
@@ -25,6 +27,7 @@ public class Dash : MonoBehaviour
     bool _inMovePhase;
 
     IPusher _pusher;
+    CharacterStatus _status;
 
     public bool isDashing { get; private set; }
 
@@ -32,6 +35,7 @@ public class Dash : MonoBehaviour
 
     void Awake()
     {
+        _status = GetComponent<CharacterStatus>();
         _pusher = GetComponent<IPusher>();
     }
 
@@ -49,6 +53,8 @@ public class Dash : MonoBehaviour
         SendMessage("SetTrigger", "Dash");
         if (feedback) { feedback.PlayFeedbacks(); }
 
+        _status.invulnerable.SetTo(true);
+
         yield return new WaitForSeconds(chargeTime);
 
         // put dash in move phase for movementTime
@@ -58,6 +64,7 @@ public class Dash : MonoBehaviour
         // no longer dashing, so other movement can be used
         isDashing = false;
         _inMovePhase = false;
+        _status.invulnerable.SetTo(false);
 
         // new dashes can be started after cooldownTime is up
         yield return new WaitForSeconds(cooldownTime);

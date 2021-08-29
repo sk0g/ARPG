@@ -3340,7 +3340,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7020979, y: 1}
+    m_SensorSize: {x: 2.4696357, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -4073,6 +4073,7 @@ GameObject:
   - component: {fileID: 1779561141}
   - component: {fileID: 1779561147}
   - component: {fileID: 1779561146}
+  - component: {fileID: 1779561153}
   - component: {fileID: 1779561150}
   - component: {fileID: 1779561152}
   - component: {fileID: 1779561148}
@@ -4390,6 +4391,28 @@ MonoBehaviour:
   animationTriggerName: Attack2
   currentWeapon: {fileID: 7698225372107154593}
   canCrit: 1
+--- !u!114 &1779561153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779561133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94533764b02d4ed9b2d27e40e7013906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnerable:
+    value: 0
+    valueChanged:
+      m_PersistentCalls:
+        m_Calls: []
+  stunned:
+    value: 0
+    valueChanged:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &1868020482
 GameObject:
   m_ObjectHideFlags: 0
