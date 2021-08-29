@@ -23,13 +23,13 @@ public class Weapon : BaseWeapon
 
     void OnTriggerEnter(Collider other)
     {
-        _attacks?.FirstOrDefault(a => WeaponCollider.isTrigger && a.enabled && a.IsAttacking)
+        _attacks?.FirstOrDefault(a => WeaponCollider.isTrigger && a.enabled && a.isAttacking)
                 ?.OnTriggerEnter(other);
     }
 
     void OnCollisionEnter(Collision other)
     {
-        _attacks?.FirstOrDefault(a => WeaponCollider.isTrigger && a.enabled && a.IsAttacking)
+        _attacks?.FirstOrDefault(a => WeaponCollider.isTrigger && a.enabled && a.isAttacking)
                 ?.OnCollisionEnter(other);
     }
 

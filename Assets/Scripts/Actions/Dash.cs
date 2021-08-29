@@ -26,9 +26,9 @@ public class Dash : MonoBehaviour
 
     IPusher _pusher;
 
-    public bool IsDashing { get; private set; }
+    public bool isDashing { get; private set; }
 
-    public bool CanDash { get; private set; } = true;
+    public bool canDash { get; private set; } = true;
 
     void Awake()
     {
@@ -42,8 +42,8 @@ public class Dash : MonoBehaviour
 
     public IEnumerator StartDash()
     {
-        CanDash = false;
-        IsDashing = true;
+        canDash = false;
+        isDashing = true;
 
         // start dash feedback, then charge up the dash
         SendMessage("SetTrigger", "Dash");
@@ -56,13 +56,13 @@ public class Dash : MonoBehaviour
         yield return new WaitForSeconds(movementTime);
 
         // no longer dashing, so other movement can be used
-        IsDashing = false;
+        isDashing = false;
         _inMovePhase = false;
 
         // new dashes can be started after cooldownTime is up
         yield return new WaitForSeconds(cooldownTime);
 
-        CanDash = true;
+        canDash = true;
         yield return null;
     }
 }

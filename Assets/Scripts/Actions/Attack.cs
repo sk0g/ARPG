@@ -17,19 +17,17 @@ public class Attack : MonoBehaviour
     [SerializeField] bool canCrit;
     bool _canAttackAgain = true; // not attacking, and has served the cooldown time?
 
-    bool _isAttacking; // currently involved in an animation event?
-
     List<GameObject> _objectsDamagedThisAttack = new();
 
     bool _shouldEmitWeaponTrailEvents; // assigned to in Awake
 
-    public string AnimationName => animationTriggerName;
+    public string animationName => animationTriggerName;
 
-    public bool CanAttack => !_isAttacking && _canAttackAgain;
+    public bool canAttack => !isAttacking && _canAttackAgain;
 
-    public bool IsAttacking => _isAttacking;
+    public bool isAttacking { get; private set; }
 
-    bool WeaponIsDamaging => currentWeapon.WeaponCollider.isTrigger;
+    bool weaponIsDamaging => currentWeapon.WeaponCollider.isTrigger;
 
     void Awake()
     {
@@ -53,7 +51,7 @@ public class Attack : MonoBehaviour
         gameObject.SendMessage("SetTrigger", animationTriggerName);
         if (_shouldEmitWeaponTrailEvents) { gameObject.BroadcastMessage("StartingAttack"); }
 
-        _isAttacking = true;
+        isAttacking = true;
         _objectsDamagedThisAttack.Clear();
     }
 
@@ -65,7 +63,7 @@ public class Attack : MonoBehaviour
 
     public void Interrupt()
     {
-        if (CanAttack) { return; }
+        if (canAttack) { return; }
 
         EndAttackSwing();
         StartCoroutine(EndAttack());
@@ -74,7 +72,7 @@ public class Attack : MonoBehaviour
     [UsedImplicitly]
     public IEnumerator EndAttack()
     {
-        _isAttacking = false;
+        isAttacking = false;
         if (_shouldEmitWeaponTrailEvents) { gameObject.BroadcastMessage("EndingAttack"); }
 
         yield return new WaitForSeconds(cooldownTime);
@@ -88,7 +86,7 @@ public class Attack : MonoBehaviour
         // NOTE: big brain way is broken. Enemy root is actually the spawner, but it still works... For now.
         if (other.gameObject.transform.root == gameObject.transform.root) { return; }
 
-        if (!(WeaponIsDamaging && IsAttacking)) { return; } // random collision, instead of an attack driven one
+        if (!(weaponIsDamaging && isAttacking)) { return; } // random collision, instead of an attack driven one
 
         var damageable = other.GetComponent<IDamageable>();
         if (damageable == null || _objectsDamagedThisAttack.Contains(other.gameObject)) { return; }

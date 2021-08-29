@@ -20,34 +20,34 @@ public class PlayerInputHandler : MonoBehaviour
     bool _shouldAttack, _shouldAttack2;
     bool _shouldDash;
 
-    bool AnyAttackIsAttacking => _attack1.IsAttacking || _attack2.IsAttacking;
+    bool anyAttackIsAttacking => _attack1.isAttacking || _attack2.isAttacking;
 
-    bool CanDash => !AnyAttackIsAttacking && _dasher.CanDash;
+    bool canDash => !anyAttackIsAttacking && _dasher.canDash;
 
-    bool CanAttack1 => !_dasher.IsDashing && _attack1.CanAttack;
+    bool canAttack1 => !_dasher.isDashing && _attack1.canAttack;
 
-    bool CanAttack2 => !_dasher.IsDashing && _attack2.CanAttack;
+    bool canAttack2 => !_dasher.isDashing && _attack2.canAttack;
 
     // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
     // it is important to move even if the movement input is Vector3.zero
-    bool CanMove => !(_dasher.IsDashing || AnyAttackIsAttacking);
+    bool canMove => !(_dasher.isDashing || anyAttackIsAttacking);
 
     void Awake()
     {
         _directionalMover = GetComponent<IDirectionalMover>();
         _dasher = GetComponent<Dash>();
-        _attack1 = GetComponents<Attack>().First(a => a.AnimationName == "Attack1");
-        _attack2 = GetComponents<Attack>().First(a => a.AnimationName == "Attack2");
+        _attack1 = GetComponents<Attack>().First(a => a.animationName == "Attack1");
+        _attack2 = GetComponents<Attack>().First(a => a.animationName == "Attack2");
     }
 
     void FixedUpdate()
     {
         if (!GameManager.Instance.PlayerCanAct) { return; }
 
-        if (_shouldDash && CanDash) { DoDash(); }
-        else if (_shouldAttack && CanAttack1) { DoAttack(); }
-        else if (_shouldAttack2 && CanAttack2) { DoAttack2(); }
-        else if (CanMove) { DoMove(); }
+        if (_shouldDash && canDash) { DoDash(); }
+        else if (_shouldAttack && canAttack1) { DoAttack(); }
+        else if (_shouldAttack2 && canAttack2) { DoAttack2(); }
+        else if (canMove) { DoMove(); }
     }
 
     void DoDash()

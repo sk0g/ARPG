@@ -17,9 +17,7 @@ public class FeedbacksListener : MonoBehaviour
     [UsedImplicitly]
     void PlayFeedbackNamed(string feedbackName)
     {
-        if (feedbackName != name || !_feedbacks) return;
-
-        _feedbacks.PlayFeedbacks();
+        if (feedbackName == name) { _feedbacks?.PlayFeedbacks(); }
     }
 }
 }

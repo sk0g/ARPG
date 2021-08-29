@@ -18,7 +18,7 @@ public class AttackAction : ActionNode
             if (_attack != null) { return _attack; }
 
             _attack = context.gameObject.GetComponents<Attack>()
-                             .First(a => a.AnimationName == attackAnimationName);
+                             .First(a => a.animationName == attackAnimationName);
             if (_attack != null) { return _attack; }
 
             Debug.LogError("BT attack action name must match Attack.animationTriggerName");
@@ -30,7 +30,7 @@ public class AttackAction : ActionNode
     {
         if (Attack == null) { Debug.LogError("Null attack :("); }
 
-        if (Attack.CanAttack)
+        if (Attack.canAttack)
         {
             Attack.StopAllCoroutines();
             Attack.StartAttack();
@@ -39,12 +39,12 @@ public class AttackAction : ActionNode
 
     protected override void OnStop()
     {
-        if (!Attack.CanAttack) { Attack.Interrupt(); }
+        if (!Attack.canAttack) { Attack.Interrupt(); }
     }
 
     protected override State OnUpdate()
     {
-        if (Attack.IsAttacking) { return State.Running; }
+        if (Attack.isAttacking) { return State.Running; }
 
         return State.Success;
     }
