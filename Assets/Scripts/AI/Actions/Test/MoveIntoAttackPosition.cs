@@ -5,8 +5,8 @@ namespace AI.Actions.Test
 {
 public class MoveIntoAttackPosition : ActionNode
 {
-    [SerializeField] float attackRange;
     static readonly int Speed = Animator.StringToHash("Speed");
+    [SerializeField] float attackRange;
 
     protected override void OnStart()
     {
@@ -20,12 +20,25 @@ public class MoveIntoAttackPosition : ActionNode
 
     protected override State OnUpdate()
     {
-        if (context.mover.DistanceToPlayer() <= attackRange) { return State.Success; }
+        var distanceToPlayer = context.mover.DistanceToPlayer();
 
-        if (context.mover.DistanceToPlayer() >= attackRange + 5) { return State.Failure; }
+        if (distanceToPlayer >= attackRange + 5) { return State.Failure; }
 
-        context.mover.WalkInDirection(context.mover.OffsetToPlayer());
-        context.mover.LookAtDirection(context.mover.OffsetToPlayer());
+        var facingPlayer = context.mover.RoughlyFacingPlayer(.8f);
+
+        var withinAttackRange = distanceToPlayer <= attackRange;
+
+        switch (facingPlayer, withinAttackRange)
+        {
+        case (true, true):
+            return State.Success;
+        case (false, _):
+            context.mover.LookAtDirection(context.mover.OffsetToPlayer());
+            break;
+        case (_, false):
+            context.mover.WalkInDirection(context.mover.OffsetToPlayer());
+            break;
+        }
 
         return State.Running;
     }

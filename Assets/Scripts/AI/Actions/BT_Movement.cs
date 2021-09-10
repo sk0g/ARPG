@@ -14,10 +14,6 @@ public class BT_Movement : MonoBehaviour
     GameObject _player;
     Collider _playerCollider;
 
-    public void FootL() { } // Animation Event Sink for Attack1
-
-    public void FootR() { } // Animation Event Sink for Attack1
-
 
     void Awake()
     {
@@ -27,11 +23,20 @@ public class BT_Movement : MonoBehaviour
         _playerCollider = _player.GetComponent<Collider>();
     }
 
+    public void FootL() { } // Animation Event Sink for Attack1
+
+    public void FootR() { } // Animation Event Sink for Attack1
+
     public void RunInDirection(Vector3 movementDirection) =>
         _cc.SimpleMove(movementDirection.normalized * runSpeed);
 
     public void WalkInDirection(Vector3 movementDirection) =>
         _cc.SimpleMove(movementDirection.normalized * walkSpeed);
+
+    public bool RoughlyFacingPlayer(float threshold) =>
+        Vector3.Dot((_playerCollider.ClosestPoint(transform.position) - transform.position).normalized,
+                    transform.forward)
+        >= threshold;
 
     public float DistanceToPlayer() =>
         Vector3.Distance(transform.position, _playerCollider.ClosestPoint(transform.position));
