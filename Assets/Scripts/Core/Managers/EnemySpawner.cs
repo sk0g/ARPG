@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject _player;
 
+    float unitSpawnSpacing = 5f;
+
     void Awake()
     {
         if (swordsman == null) { print("Swordsman prefab is null!"); }
@@ -69,7 +71,19 @@ public class EnemySpawner : MonoBehaviour
 
     float RandomFloat() => (Random.value * 2 * unitSpawnRadius) - unitSpawnRadius;
 
-    bool SpawnPointValid(Vector3 point) => DistanceToPlayerOk(point) && PointIsAboveStage(point);
+    bool SpawnPointValid(Vector3 point) =>
+        DistanceToPlayerOk(point) && PointIsAboveStage(point) && OtherEnemiesAreNotTooClose(point);
+
+    bool OtherEnemiesAreNotTooClose(Vector3 point)
+    {
+        var children = GetComponentsInChildren<Transform>();
+        foreach (var t in children)
+        {
+            if (Vector3.Distance(t.position, point) <= minimumSpawnDistance) { return false; }
+        }
+
+        return true;
+    }
 
     bool PointIsAboveStage(Vector3 point) => Physics.Raycast(point, Vector3.down, 2f);
 
