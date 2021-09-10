@@ -34,6 +34,8 @@ public abstract class BaseWeapon : MonoBehaviour, IAttack
         weaponCollider.enabled = shouldDetectCollisions;
     }
 
+    public bool ColliderIsEnabled => weaponCollider.isTrigger && weaponCollider.enabled;
+
     protected BaseWeapon(float r, string d) { }
 
     public virtual void Awake()

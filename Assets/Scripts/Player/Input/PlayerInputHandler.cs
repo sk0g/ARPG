@@ -24,9 +24,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     bool canDash => !anyAttackIsAttacking && _dasher.canDash;
 
-    bool canAttack1 => !_dasher.isDashing && _attack1.canAttack;
+    bool canAttack1 => !_dasher.isDashing && _attack1.canAttack && !anyAttackIsAttacking;
 
-    bool canAttack2 => !_dasher.isDashing && _attack2.canAttack;
+    bool canAttack2 => !_dasher.isDashing && _attack2.canAttack && !anyAttackIsAttacking;
 
     // due to how the animator's speed value is set in PlayerAnimationController.UpdateAnimatorSpeedValue(),
     // it is important to move even if the movement input is Vector3.zero

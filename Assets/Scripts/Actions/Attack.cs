@@ -56,10 +56,16 @@ public class Attack : MonoBehaviour
     }
 
     [UsedImplicitly]
-    public void StartAttackSwing() => currentWeapon.SetColliderState(true);
+    public void StartAttackSwing()
+    {
+        if (isAttacking) { currentWeapon.SetColliderState(true); }
+    }
 
     [UsedImplicitly]
-    public void EndAttackSwing() => currentWeapon.SetColliderState(false);
+    public void EndAttackSwing()
+    {
+        if (isAttacking) { currentWeapon.SetColliderState(false); }
+    }
 
     public void Interrupt()
     {
