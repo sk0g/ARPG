@@ -101,6 +101,10 @@ public class Attack : MonoBehaviour
 
         damageable.TakeDamage(hitDamage);
         _objectsDamagedThisAttack.Add(other.gameObject);
+
+        BroadcastMessage("PlayFeedbackNamed",
+                         "AttackedEnemyFeedback",
+                         SendMessageOptions.DontRequireReceiver);
     }
 
     bool HitIsCrit(GameObject other)
