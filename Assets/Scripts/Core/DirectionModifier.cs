@@ -41,7 +41,7 @@ public class DirectionModifier : MonoBehaviour
         var r = RaysToTest().FirstOrDefault(CanMoveForward);
 
         float angle = Vector3.Angle(Vector3.forward, r.direction);
-        // Debug.DrawRay(r.origin, r.direction*3.0f);
+        // Debug.DrawRay(r.origin, r.direction * 3.0f);
 
         transform.Rotate(new Vector3(0, 1, 0), angle);
         return 0;
@@ -54,6 +54,7 @@ public class DirectionModifier : MonoBehaviour
 
         for (var i = 0; i < _totalRayCount; i++)
         {
+            // ReSharper disable once PossibleLossOfFraction
             var angleMultiplier = (int) Mathf.Floor((i + 1) / 2);
 
             if (i % 2 == 0) // even - left rotate
