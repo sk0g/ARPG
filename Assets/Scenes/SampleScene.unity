@@ -2145,7 +2145,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 23.051785
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -3785,7 +3785,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1893408, y: 1}
+    m_SensorSize: {x: 2.9183433, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
