@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 463525511}
   - component: {fileID: 5765056799751024048}
   - component: {fileID: 3089409583341708865}
+  - component: {fileID: 1354813197117524617}
   m_Layer: 0
   m_Name: Swordsman_BTree
   m_TagString: Enemy
@@ -498,6 +499,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af93392789b04fb38c3fa6dd1a922b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1354813197117524617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052925590495800915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7479d645bd4b4be1ac250f1e1927f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCheckDistance: 5
+  rayThiccness: 1
+  totalLookAngle: 360
+  rayCount: 1
 --- !u!1 &2052925590495800917
 GameObject:
   m_ObjectHideFlags: 0
