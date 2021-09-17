@@ -13,44 +13,20 @@ public class DirectionModifier : MonoBehaviour
 
     int _totalRayCount;
 
-    Ray forwardRay;
-
     void Awake()
     {
-        forwardRay = new Ray(transform.position, transform.forward);
-        _totalRayCount = 360 / raySpacingAngle;
+        _totalRayCount = Mathf.RoundToInt(totalLookAngle / raySpacingAngle);
     }
 
-    void FixedUpdate()
-    {
-        UpdateForwardRay();
-
-        if (!CanMoveForward(forwardRay)) { FindBestLookAngle(); }
-    }
-
-    void UpdateForwardRay()
-    {
-        forwardRay.origin = transform.position;
-        forwardRay.direction = transform.forward;
-    }
+    Vector3 ClosestOffsetToDirection(Vector3? desiredMovementOffset) =>
+        RaysToTest(desiredMovementOffset).FirstOrDefault(CanMoveForward).direction;
 
     bool CanMoveForward(Ray ray) => !Physics.SphereCast(ray, rayThiccness, out RaycastHit hit, rayCheckDistance);
 
-    float FindBestLookAngle()
-    {
-        var r = RaysToTest().FirstOrDefault(CanMoveForward);
-
-        float angle = Vector3.Angle(Vector3.forward, r.direction);
-        // Debug.DrawRay(r.origin, r.direction * 3.0f);
-
-        transform.Rotate(new Vector3(0, 1, 0), angle);
-        return 0;
-    }
-
-    IEnumerable<Ray> RaysToTest()
+    IEnumerable<Ray> RaysToTest(Vector3? desiredMovementOffset)
     {
         var rayOrigin = transform.position;
-        var forward = transform.forward;
+        var tryingToMoveTo = desiredMovementOffset ?? transform.forward;
 
         for (var i = 0; i < _totalRayCount; i++)
         {
@@ -59,11 +35,13 @@ public class DirectionModifier : MonoBehaviour
 
             if (i % 2 == 0) // even - left rotate
             {
-                yield return new Ray(rayOrigin, Quaternion.Euler(0, -raySpacingAngle * angleMultiplier, 0) * forward);
+                yield return new Ray(
+                    rayOrigin, Quaternion.Euler(0, -raySpacingAngle * angleMultiplier, 0) * tryingToMoveTo);
             }
             else // odd - right rotate
             {
-                yield return new Ray(rayOrigin, Quaternion.Euler(0, raySpacingAngle * angleMultiplier, 0) * forward);
+                yield return new Ray(
+                    rayOrigin, Quaternion.Euler(0, raySpacingAngle * angleMultiplier, 0) * tryingToMoveTo);
             }
         }
     }
