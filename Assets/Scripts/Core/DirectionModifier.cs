@@ -6,7 +6,7 @@ namespace Core
 {
 public class DirectionModifier : MonoBehaviour
 {
-    [Range(5f, 25f)] [SerializeField] float rayCheckDistance = 5.0f;
+    [Range(0.1f, 10f)] [SerializeField] float rayCheckDistance = 1.0f;
     [Range(0.1f, 5f)] [SerializeField] float rayThiccness = 1.0f;
     [Range(45, 360f)] [SerializeField] float totalLookAngle = 360f;
     [Range(1, 6)] [SerializeField] int raySpacingAngle = 16;
@@ -18,7 +18,7 @@ public class DirectionModifier : MonoBehaviour
         _totalRayCount = Mathf.RoundToInt(totalLookAngle / raySpacingAngle);
     }
 
-    Vector3 ClosestOffsetToDirection(Vector3? desiredMovementOffset) =>
+    public Vector3 ClosestOffsetToDirection(Vector3 desiredMovementOffset) => 
         RaysToTest(desiredMovementOffset).FirstOrDefault(CanMoveForward).direction;
 
     bool CanMoveForward(Ray ray) => !Physics.SphereCast(ray, rayThiccness, out RaycastHit hit, rayCheckDistance);
@@ -32,7 +32,7 @@ public class DirectionModifier : MonoBehaviour
         {
             // ReSharper disable once PossibleLossOfFraction
             var angleMultiplier = (int) Mathf.Floor((i + 1) / 2);
-
+            
             if (i % 2 == 0) // even - left rotate
             {
                 yield return new Ray(

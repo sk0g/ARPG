@@ -511,10 +511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7479d645bd4b4be1ac250f1e1927f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCheckDistance: 5
+  rayCheckDistance: 0.5
   rayThiccness: 1
-  totalLookAngle: 360
-  rayCount: 1
+  totalLookAngle: 180
+  raySpacingAngle: 16
 --- !u!1 &2052925590495800917
 GameObject:
   m_ObjectHideFlags: 0
