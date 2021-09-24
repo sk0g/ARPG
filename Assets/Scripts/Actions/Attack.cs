@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Interfaces;
 using JetBrains.Annotations;
-using Player;
-using Player.Weapons;
 using UnityEngine;
 
 namespace Actions
@@ -13,8 +11,8 @@ public class Attack : MonoBehaviour
     [SerializeField] float cooldownTime = .3f;
     [SerializeField] float damageAmount = 10f;
     [SerializeField] string animationTriggerName = "Attack1";
-    [SerializeField] Weapon currentWeapon;
     [SerializeField] bool canCrit;
+    [SerializeField] WeaponSheath _weaponSheath;
     bool _canAttackAgain = true; // not attacking, and has served the cooldown time?
 
     List<GameObject> _objectsDamagedThisAttack = new();
@@ -27,17 +25,11 @@ public class Attack : MonoBehaviour
 
     public bool isAttacking { get; private set; }
 
-    bool weaponIsDamaging => currentWeapon.WeaponCollider.isTrigger;
+    bool weaponIsDamaging => _weaponSheath.WeaponIsTrigger();
 
     void Awake()
     {
-        // not bare-fist!
-        if (currentWeapon != null && currentWeapon.WeaponAnimations != null)
-        {
-            // TODO: Define a player component's interface similar to BTree's context
-            GetComponent<PlayerAnimationController>().SetAnimations(currentWeapon.WeaponAnimations);
-        }
-
+        _weaponSheath = GetComponent<WeaponSheath>();
         _shouldEmitWeaponTrailEvents = GetComponentInChildren<WeaponTrailController>() != null;
     }
 
@@ -58,13 +50,13 @@ public class Attack : MonoBehaviour
     [UsedImplicitly]
     public void StartAttackSwing()
     {
-        if (isAttacking) { currentWeapon.SetColliderState(true); }
+        if (isAttacking) { _weaponSheath.SetColliderState(true); }
     }
 
     [UsedImplicitly]
     public void EndAttackSwing()
     {
-        if (isAttacking) { currentWeapon.SetColliderState(false); }
+        if (isAttacking) { _weaponSheath.SetColliderState(false); }
     }
 
     public void Interrupt()

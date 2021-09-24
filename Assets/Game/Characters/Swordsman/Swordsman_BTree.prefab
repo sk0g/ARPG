@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 5765056799751024048}
   - component: {fileID: 3089409583341708865}
   - component: {fileID: 1354813197117524617}
+  - component: {fileID: 72477497}
   m_Layer: 0
   m_Name: Swordsman_BTree
   m_TagString: Enemy
@@ -485,8 +486,8 @@ MonoBehaviour:
   cooldownTime: 0.3
   damageAmount: 10
   animationTriggerName: Attack1
-  currentWeapon: {fileID: 1435836816157164937}
   canCrit: 0
+  _weaponSheath: {fileID: 0}
 --- !u!114 &3089409583341708865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +516,20 @@ MonoBehaviour:
   rayThiccness: 1
   totalLookAngle: 180
   raySpacingAngle: 16
+--- !u!114 &72477497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052925590495800915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae83d713d1b994fffb92b3f80646d754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapons:
+  - {fileID: 1435836816157164937}
 --- !u!1 &2052925590495800917
 GameObject:
   m_ObjectHideFlags: 0

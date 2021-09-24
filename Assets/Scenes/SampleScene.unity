@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
+  m_IndirectSpecularColor: {r: 1250.0902, g: 1597.8608, b: 2177.6772, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3886,7 +3886,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.8344085, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -4941,7 +4941,7 @@ GameObject:
   - component: {fileID: 1779561152}
   - component: {fileID: 1779561148}
   - component: {fileID: 1779561149}
-  - component: {fileID: 1779561154}
+  - component: {fileID: 1779561155}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5220,8 +5220,8 @@ MonoBehaviour:
   cooldownTime: 0.3
   damageAmount: 10
   animationTriggerName: Attack1
-  currentWeapon: {fileID: 7698225372107154593}
   canCrit: 1
+  _weaponSheath: {fileID: 0}
 --- !u!54 &1779561151
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5253,8 +5253,8 @@ MonoBehaviour:
   cooldownTime: 0.5
   damageAmount: 15
   animationTriggerName: Attack2
-  currentWeapon: {fileID: 7698225372107154593}
   canCrit: 1
+  _weaponSheath: {fileID: 0}
 --- !u!114 &1779561153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5277,7 +5277,7 @@ MonoBehaviour:
     valueChanged:
       m_PersistentCalls:
         m_Calls: []
---- !u!114 &1779561154
+--- !u!114 &1779561155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5286,13 +5286,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1779561133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7479d645bd4b4be1ac250f1e1927f68, type: 3}
+  m_Script: {fileID: 11500000, guid: ae83d713d1b994fffb92b3f80646d754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCheckDistance: 5
-  rayThiccness: 1
-  totalLookAngle: 360
-  raySpacingAngle: 16
+  Weapons:
+  - {fileID: 7698225372107154593}
 --- !u!1 &1853990533
 GameObject:
   m_ObjectHideFlags: 0
@@ -6140,17 +6138,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1354813197117524617, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
-      propertyPath: totalLookAngle
-      value: 180
-      objectReference: {fileID: 0}
     - target: {fileID: 2052925590495310771, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2052925590495310771, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.165384
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2052925590495310771, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6158,7 +6152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2052925590495310771, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.290041
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2052925590495310771, guid: ec6f8f00cb87d4eef90d147f21d96e05, type: 3}
       propertyPath: m_LocalRotation.w
