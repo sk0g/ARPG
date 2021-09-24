@@ -111,10 +111,7 @@ public class Attack : MonoBehaviour
     {
         if (!canCrit) { return false; }
 
-        var dotProduct = Quaternion.Dot(transform.rotation, other.transform.rotation);
-
-        // between .8 and 1 is considered a crit
-        var hitIsCrit = dotProduct >= .8f;
+        var hitIsCrit = other.transform.InverseTransformPoint(transform.position).z <= -.5f;
 
         if (hitIsCrit) { BroadcastMessage("PlayFeedbackNamed", "CritFeedback"); }
 
